@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    <!-- My own CSS -->
+    <link rel="stylesheet" href="./css/dragging.css">
+
+    <!-- Handlebars script -->
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    
+    <title>Round English - Exercise</title>
+</head>
+<body>
+
+    <nav class="navbar sticky-top navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">
+            <span class="navbar-brand mb-0 h1">
+                Round English
+            </span>
+        </a>
+    </nav>
+
+    <div class="container mainContainer">
+        <div class="row">
+            <h1 class="display-5">Put the words in order.</h1>
+        </div>
+
+        <!-- empty div to be filled in with the sentence template -->
+        <div id="sentenceContainer" class="container-fluid" role="main">
+        </div>
+
+        <!-- empty div to be filled in with the modal template -->
+        <div id="modalContainer" class="container-fluid" role="main">
+        </div>
+    </div>
+
+    <!-- template to display the sentences -->
+    <script id="sentenceTemplate" type="text/x-handlebars-template">
+        {{#each sentences}}
+        <div class="row">
+            <div class="container sentenceContainer">
+                <div class="col-1 sentenceNumber">
+                    <!-- incremented is a custom handlebars function helper. See: dragging.js -->
+                    <p>{{incremented @index}}</p> 
+                </div>
+                <div class="col-10 sentence">
+                    <ul class="eachWord" data-id="{{@index}}">
+                        {{#each sentenceShuffled}}
+                            <li id="wordIndex{{@../index}}{{@index}}" class="default sortable">{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="col-1 check">
+                    <img class="checkIcon" id="icon{{@index}}">
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+
+    <!-- template to display the modal -->
+    <script id="completeTemplate" type="text/x-handlebars-template">
+        <div class="modal fade" id="completeModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">Well done!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>You've put all sentences in order:</p>
+                        <p>
+                        {{#each sentences}}
+                            {{incremented @index}}. {{text}}<br>
+                        {{/each}}
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+
+    <!-- SortableJS -->
+    <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
+
+    <!-- My own javascrip -->
+    <script src="./js/dragging.js"></script>
+    
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
