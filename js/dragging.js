@@ -8,36 +8,22 @@ $(document).ready( function() {
     const exercise = urlParams.get("ex");
     console.log(exercise);
     
-    // state-of-the-art database 
-    var data = { sentences: [
-    {
-        number: 1, // not using it
-        text: "The first sentence.",
-        sentenceInOrder: null, // array that stores the split sentence
-        sentenceShuffled: null, // array that stores the shuffled sentence
-        currentCorrectWord: null, // stores how many words are correct already while student is sorting
-        currentlyLeft: null, // stores the words still left to be sorted
-        complete: false // becames true when sentence is sorted
-    },
-    {
-        number: 2,
-        text: "The second sentence.",
-        sentenceInOrder: null,
-        sentenceShuffled: null,
-        currentCorrectWord: null,
-        currentlyLeft: null,
-        complete: false
-    },
-    {
-        number: 3,
-        text: "Yet another sentence.",
-        sentenceInOrder: null,
-        sentenceShuffled: null,
-        currentCorrectWord: null,
-        currentlyLeft: null,
-        complete: false
+    class Sentence {
+        constructor(sentence) {
+            this.text = sentence;
+            this.sentenceInOrder = []; // array that stores the split sentence
+            this.sentenceShuffled = []; // array that stores the shuffled sentence
+            this.currentCorrectWord = 0; // stores how many words are correct already while student is sorting
+            this.currentlyLeft = []; // array that stores the words still left to be sorted
+            this.complete = false; // becames true when sentence is sorted
+        }
     }
-    ]};
+
+    sentence1 = new Sentence("The first sentence.");
+    sentence2 = new Sentence("The second sentence.");
+    sentence3 = new Sentence("Yet another sentence.");
+
+    var data = { sentences: [sentence1, sentence2, sentence3]};
 
     // the audio files
     var moveAudio = new Audio("./sounds/move.wav");
@@ -99,6 +85,7 @@ $(document).ready( function() {
             // are all sentences sorted?
             for (var i in data.sentences) {
                 var sorted = data.sentences[i].complete;
+                console.log(sorted);
                 if (!sorted) break;
             }
             // if all sorted, show modal
