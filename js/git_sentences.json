@@ -1,0 +1,7 @@
+[
+  { "code": "git add <filename>", "words": "Add files to the INDEX." },
+  { "code": "git commit -m 'commit message'", "words": "Commit the changes to the HEAD." },
+  { "code": "git push origin master", "words": "Send the changes to the remote repository." },
+  { "code": "git branch feature_x", "words": "Create a new branch named 'feature_x'."},
+  { "code": "git merge feature_x", "words": "Merge branch named 'feature_x' into your active branch."}
+]

@@ -9,20 +9,13 @@ p {
 }
 
 .sentenceContainer{
-    /* border-style: solid; */
-    /* border-width: 1px; */
+    box-shadow: 5px 5px 5px grey;
     display: flex;
-    margin-top: 20px;
     background-color: lightblue;
     border-radius: 5px;
-    /* flex-direction: row;
-    flex-wrap: wrap; */
 }
 
 .sentence{
-    /* border-style: solid; */
-    /* border-width: 1px; */
-    /* position: absolute; */
     padding: 5px 5px; /* to centre the words in the div */
 }
 
@@ -30,22 +23,13 @@ p {
     list-style-type: none; 
     margin: 0; 
     padding: 0; 
-    /* width: 50%;  */
-    /* height: 150px; */
 }
 
 .check{
-    /* border-style: solid; */
-    /* border-width: 1px; */
     width: 100%;
 }
 
 img {
-    /* display: block; */
-    /* margin-left: auto; */
-    /* margin-right: auto; */
-    /* width: 40%; */
-    /* all below to centre the icon */
     margin: 0;
     position: relative;
     top: 50%;
@@ -57,52 +41,53 @@ img {
     border-style: solid;
     border-width: thin;
     border-radius: 5px;
-    /* background-color: lightseagreen; */
 
     margin: 3px; 
     padding-left: 10px; 
     padding-right: 10px;
     float: left; 
-    cursor: grab;
-    /* width: 10%;  */
-    /* height: 40px;  */
     font-size: 1.5em; 
     text-align: center; 
-}
-
-.sortable {
-    /* background-color: gray; */
+  }
+  
+  .sortable {
+    cursor: move;
 }
 
 .notSortable {
+    cursor: not-allowed;
     background-color: lightseagreen;
 }
 
-.highlight {
-    /* border: solid red; */
-    font-weight: bold;
-    /* font-size: 45px; */
-    background-color: gray;
+.mainContainer {
+    padding: 0 1rem 2rem 1rem;
 }
 
-.mainContainer {
-    padding-top: 5%;
+.row {
+  padding-top: 3%;
+}
+
+p.code {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
 }
 
 .sentenceContainer {
-    display: flex;
+  display: flex;
 }
 
 .sentenceNumber{
-    /* border-style: solid; */
-    /* border-width: 1px; */
-    /* margin-right: 1%; */
-    /* text-align: center; */
-    /* vertical-align: middle; */
-    /* margin: auto; */
-    /* width: 50%; */
     font-size: 1.5em;
-
     display: flex;
     justify-content: center;
     align-items: center;
