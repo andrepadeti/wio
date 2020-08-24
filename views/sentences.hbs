@@ -1,0 +1,22 @@
+{{#each sentences}}
+  <div class="row">
+    <p class="code"><!--{{incremented @index}}-->{{code}}</p>
+  </div>
+  <div class="row">
+    <div class="container sentenceContainer shadow">
+      <!-- <div class="col-1 sentenceNumberContainer">
+          <p>{{incremented @index}}</p> 
+      </div> -->
+      <div class="col-11 sentence">
+        <ul class="eachWord" id="sort{{id}}" data-id="{{@index}}">
+          {{#each sentenceShuffled}}
+            <li id="wordIndex{{@../index}}{{@index}}" class="default sortable">{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="col-1 check">
+        <img class="checkIcon" id="icon{{@index}}">
+      </div>
+    </div>
+  </div>
+{{/each}}

@@ -1,0 +1,26 @@
+{
+  "name": "words-in-order-rehearsal",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon -L ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "hbs": "^4.1.1",
+    "http-errors": "~1.6.3",
+    "jquery": "^3.5.1",
+    "jquery-ui": "^1.12.1",
+    "mongodb": "^3.6.0",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.4",
+    "serve-favicon": "^2.5.0",
+    "sortablejs": "^1.10.2"
+  },
+  "devDependencies": {
+    "jquery-sortablejs": "^1.0.1"
+  }
+}

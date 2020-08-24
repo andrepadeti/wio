@@ -1,18 +1,28 @@
 body {
+    font-size: 16px;
     background-color: white;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+h1 {
+  font-size: 2em;
+  margin: 0.3em;
+}
+
+h2 {
+  font-size: 1.2em;
+}
+
 p {
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0;
 }
 
 .sentenceContainer{
-    box-shadow: 5px 5px 5px grey;
     display: flex;
+    flex-direction: row; /* this is default when display: flex */
     background-color: lightblue;
     border-radius: 5px;
+    margin-bottom: 2rem;
 }
 
 .sentence{
@@ -35,22 +45,21 @@ img {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
 
 .eachWord li { 
-    border-style: solid;
-    border-width: thin;
+    border: thin solid black;
     border-radius: 5px;
 
     margin: 3px; 
     padding-left: 10px; 
     padding-right: 10px;
     float: left; 
-    font-size: 1.5em; 
+    font-size: 1.1em; 
     text-align: center; 
-  }
+}
   
-  .sortable {
+.sortable {
     cursor: move;
 }
 
@@ -60,7 +69,7 @@ img {
 }
 
 .mainContainer {
-    padding: 0 1rem 2rem 1rem;
+    padding: 0 2rem 2rem 2rem;
 }
 
 .row {
@@ -74,21 +83,23 @@ p.code {
     color: #666;
     page-break-inside: avoid;
     font-family: monospace;
-    margin-bottom: 1.6em;
+    margin-bottom: 1em;
     max-width: 100%;
     overflow: auto;
-    padding: 1em 1.5em;
+    padding: 0.5em 1.5em;
     display: block;
     word-wrap: break-word;
 }
 
-.sentenceContainer {
-  display: flex;
-}
-
-.sentenceNumber{
+.sentenceNumberContainer{
     font-size: 1.5em;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.titleContainer {
+  text-align: center;
+  background-color: lightseagreen;
+  margin-bottom: 2em;
 }
