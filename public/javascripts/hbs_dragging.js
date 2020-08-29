@@ -1,23 +1,4 @@
-$(document).ready( () => {
-// document.addEventListener('DOMContentLoaded', () => {
-
-  // future implementation of query string parameters
-  // https://www.sitepoint.com/get-url-parameters-with-javascript/
-  const queryString = window.location.search
-  const urlParams = new URLSearchParams(queryString)
-  const exercise = urlParams.get('ex')
-  // console.log(exercise)
-
-  // Object holding the sentences to be shown 
-  var sentences = loadSentences([
-    { code: 'The first sentence.', words: 'The first sentence.'},
-    { code: 'The second sentence.', words: 'The second sentence.'},
-    // { code: 'git add <filename>', words: 'Add files to the INDEX.' },
-    // { code: "git commit -m 'commit message'", words: 'Commit the changes to the HEAD.' },
-    // { code: 'git push origin master', words: 'Send the changes to the remote repository.' },
-    // { code: 'git branch feature_x', words: "Create a new branch named 'feature_x'."},
-    // { code: 'git merge feature_x', words: "Merge branch named 'feature_x' into your active branch." },
-  ])
+document.addEventListener('DOMContentLoaded', () => {
 
   // the audio files
   // the bell audio object is instantiated each time a sentence is completed, in case
@@ -40,11 +21,31 @@ $(document).ready( () => {
 
     // if all sorted, show modal
     if (sorted) {
-      $('#completeModal').modal('show')
-      // the following replaces the above in Bootstrap 5
-      // const modal = new bootstrap.Modal(document.getElementById('completeModal'))
-      // const modal = new bootstrap.Modal(document.querySelector('#completeModal'))
-      // modal.show()
+      // function to handle click or touch to close modal
+      const handleClickOrTouch = (e) => {
+        e.preventDefault()
+        modal.style.display = 'none'
+      }
+      
+      const modal = document.getElementById('completeModal')
+      modal.style.display = 'block'
+      
+      // focus on the close button
+      const closeButton = document.getElementById('close-button')
+      closeButton.focus()
+      
+      // close modal if click or touch on button
+      closeButton.addEventListener('click', handleClickOrTouch)
+      closeButton.addEventListener('touchstart', handleClickOrTouch)
+      
+      // close modal if click anywhere outside the modal
+      window.addEventListener('click', handleClickOrTouch)
+      window.addEventListener('touchstart', handleClickOrTouch)
+      
+      // close modal if press escape
+      modal.onkeydown = (e) => {
+        if (e.key = 'Escape') modal.style.display = 'none'
+      }
     }
   }
   
@@ -91,12 +92,7 @@ $(document).ready( () => {
           }
           text = document.getElementById(currentlyLeft[0]).textContent
         }
-
-        
       }
     })
   })
 })
-    
-// handlebars helper to show @index starting from 1
-Handlebars.registerHelper('incremented', index => ++index)

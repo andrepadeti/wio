@@ -1,105 +1,204 @@
+:root {
+  /* define colours */
+  --nav-color: #1F57B2;
+  --title-color: #1FB249;
+  --exercise-container-color: #DAF9F7;
+  --sortable-color: #5BE2DB;
+  --not-sortable-color: #48DF73;
+}
+
 body {
-    font-size: 16px;
-    background-color: white;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  background-color: white;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 h1 {
   font-size: 2em;
-  margin: 0.3em;
 }
 
 h2 {
   font-size: 1.2em;
 }
 
-p {
-    margin: 0;
+.nav {
+  background-color: var(--nav-color);
+  margin-bottom: 2rem;
 }
 
-.sentenceContainer{
-    display: flex;
-    flex-direction: row; /* this is default when display: flex */
-    background-color: lightblue;
-    border-radius: 5px;
-    margin-bottom: 2rem;
+.nav p {
+  font-size: 1.5em;
+  color: white;
+  text-align: left;
+  padding: 1em 1em;
+}
+
+.main-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+.title {
+  padding: 1em;
+  text-align: center;
+  background-color: var(--title-color);
+  border-radius: 5px;
+  margin-bottom: 4em;
+}
+ 
+.exercise-container{
+  background-color: var(--exercise-container-color);
+  border-radius: 5px;
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
+  /* grid container properties */
+  display: grid;
+  grid-template-columns: 11fr 1fr;
+  grid-template-rows: 1;
+  grid-template-areas: "sentence check";
 }
 
 .sentence{
-    padding: 5px 5px; /* to centre the words in the div */
+  grid-area: sentence;
+  padding: 1rem; 
+  /* this item/fraction of the grid is a flexbox itself */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; 
+  align-items: center;
 }
 
-.eachWord { 
-    list-style-type: none; 
-    margin: 0; 
-    padding: 0; 
+.word { 
+  font-size: 1.1em; 
+  margin: 5px 3px;
+  padding: 3px 10px; 
+  border: thin solid black;
+  border-radius: 5px;
 }
 
 .check{
-    width: 100%;
+  grid-area: check;
+  place-self: center center; /* shortcut for align-self (inline axis) and justify-self (block axis) */
 }
 
 img {
-    margin: 0;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  height: 60%;
+  width: 60%;
 }
 
-.eachWord li { 
-    border: thin solid black;
-    border-radius: 5px;
-
-    margin: 3px; 
-    padding-left: 10px; 
-    padding-right: 10px;
-    float: left; 
-    font-size: 1.1em; 
-    text-align: center; 
-}
-  
 .sortable {
-    cursor: move;
+  cursor: move;
+  background-color: var(--sortable-color);
 }
 
 .notSortable {
-    cursor: not-allowed;
-    background-color: lightseagreen;
+  cursor: not-allowed;
+  background-color: var(--not-sortable-color);
 }
 
-.mainContainer {
-    padding: 0 2rem 2rem 2rem;
+.code {
+  background: #f4f4f4;
+  color: #666;
+  font-size: 0.7rem;
+  font-family: monospace;
+  border: 1px solid #ddd;
+  border-left: 3px solid var(--exercise-container-color);
+  page-break-inside: avoid;
+  max-width: 100%;
+  overflow: auto;
+  word-wrap: break-word;
+  padding: 0.5em 1.5em;
+  margin-bottom: 1em;
 }
 
-.row {
-  padding-top: 3%;
+.sentence-number{
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-p.code {
-    background: #f4f4f4;
-    border: 1px solid #ddd;
-    border-left: 3px solid #f36d33;
-    color: #666;
-    page-break-inside: avoid;
-    font-family: monospace;
-    margin-bottom: 1em;
-    max-width: 100%;
-    overflow: auto;
-    padding: 0.5em 1.5em;
-    display: block;
-    word-wrap: break-word;
+.shadow{
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 10px 10px 6px -6px #777;
 }
 
-.sentenceNumberContainer{
-    font-size: 1.5em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* modal classes */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 5rem; /* location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.titleContainer {
-  text-align: center;
-  background-color: lightseagreen;
-  margin-bottom: 2em;
+.modal-header {
+  padding: 1rem;
+  background-color: var(--title-color);
+  color: white;
+  /* flexbox, one item to the left, the other to the right */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-body {
+  padding: 1rem;
+}
+
+.modal-footer {
+  padding: 1rem;
+  background-color: var(--title-color);
+  color: white;
+  /* flexbox right-side aligned */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 90%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* modal is relatively smaller if on desktop */
+@media (min-width: 768px) {
+  .modal-content { width: 50%; }
+}
+
+/* animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+/* close button */
+.close {
+  color: #aaa;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

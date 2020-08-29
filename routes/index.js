@@ -1,30 +1,29 @@
-var express = require('express')
-var path = require('path')
-var router = express.Router()
-var loadSentences = require('../public/javascripts/sentences')
-var $ = require('jquery')
-// import 'jquery-sortablejs'
-var Sortable = require('sortablejs')
+import express from 'express'
+let router = express.Router()
+import hbs from 'hbs'
+import loadSentences from '../public/javascripts/hbs_sentences'
+import { ObjectId } from 'mongodb'
 
-// const test = wio.findOne()
-// console.log(test)
-
-var sentences = loadSentences([
-  { code: "The first sentence.", words: "The first sentence."},
-  { code: "The second sentence.", words: "The second sentence."},
-  // { code: "git add <filename>", words: "Add files to the INDEX." },
-  // { code: 'git commit -m "commit message"', words: "Commit the changes to the HEAD." },
-  // { code: "git push origin master", words: "Send the changes to the remote repository." },
-  // { code: "git branch feature_x", words: 'Create a new branch named "feature_x".'},
-  // { code: "git merge feature_x", words: 'Merge branch named "feature_x" into your active branch.' },
-])
+// helper to pass sentences to the client javascript file 
+hbs.registerHelper('convert', data => JSON.stringify(data))
+// helper to show @index starting from 1 
+hbs.registerHelper('incremented', index => ++index)
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.locals = { sentences }
-  res.render('index')
-  res.sendFile(path.join(__dirname, '/', '../public', 'index.html'))
+router.get('/', (req, res, next) => {
+  const db = req.app.locals.db
+  const wio = db.collection('wio')
+  // const query = ObjectId("5f453e2a366be112746d3a24") // git sentences
+  const query = ObjectId("5f40055d0cbbae19ed988868")  // test sentences
+  const options = { projection: { _id: 0, data: 1 }}
+  wio.findOne(query, options)
+    .then( ( { data } ) => {
+      const sentences = loadSentences(data)
+      res.locals = { sentences }
+      res.render('index')
+    })
+  // res.sendFile(path.join(__dirname, '/', '../public', 'index.html'))
 
 })
 
-module.exports = router
+export default router

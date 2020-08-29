@@ -1,33 +1,33 @@
-var createError = require('http-errors')
-var express = require('express')
-var path = require('path')
-var cookieParser = require('cookie-parser')
-var logger = require('morgan')
-var favicon = require('serve-favicon')
-var hbs = require('hbs')
+import createError from 'http-errors'
+import express, { json, urlencoded } from 'express'
+import { join } from 'path'
+import cookieParser from 'cookie-parser'
+import logger from 'morgan'
+import favicon from 'serve-favicon'
+import hbs, { registerHelper, registerPartials } from 'hbs'
 
-var indexRouter = require('./routes/index')
-var usersRouter = require('./routes/users')
+import indexRouter from './routes/index'
+import usersRouter from './routes/users'
 
 var app = express()
 
 // register handlebars partials and helpers
-hbs.registerPartials(path.join(__dirname, 'views'))
-hbs.registerHelper('incremented', index => ++index)
+hbs.registerPartials(join(__dirname, 'views'))
+
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', join(__dirname, 'views'))
 app.set('view engine', 'hbs')
 
 
 // great article 'what is middleware?'
 // https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded/51844327#:~:text=a.-,express.,use(express.
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico'))) // serve a favicon
+app.use(favicon(join(__dirname, 'public', 'favicon.ico'))) // serve a favicon
 app.use(logger('dev')) // logging module that generates log (information)
-app.use(express.json()) // recognize the incoming request object as a json object
-app.use(express.urlencoded({ extended: false })) // recognize the incoming req obj as strings or arrays
+app.use(json()) // recognize the incoming request object as a json object
+app.use(urlencoded({ extended: false })) // recognize the incoming req obj as strings or arrays
 app.use(cookieParser()) //for cookies. I need to dive into it some day.
-app.use(express.static(path.join(__dirname, 'public'))) // from where it'll serve static files, eg css
+app.use(express.static(join(__dirname, 'public'))) // from where it'll serve static files, eg css
 
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
@@ -48,4 +48,4 @@ app.use(function(err, req, res, next) {
   res.render('error')
 })
 
-module.exports = app
+export default app
