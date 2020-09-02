@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  
+  <!-- My own CSS -->
+  <link rel='stylesheet' type='text/css' href='/stylesheets/reset.css'>
+  <link rel='stylesheet' type='text/css' href='/stylesheets/main.css'>
+
+  <title>Round English - Exercise</title>
+</head>
+<body>
+  {{> wio/navbar }}
+  
+  <div class='main-container'>
+      {{> wio/title 
+        main='Index of Activities'
+        subtitle=''
+      }}
+
+      {{#each data}}
+        <a class='games shadow' href='/wio/{{{_id}}}'>
+          {{description}}
+        </a>
+      {{/each}}
+  </div>
+
+    <!-- SortableJS -->
+    <script src='https://raw.githack.com/SortableJS/Sortable/master/Sortable.js'></script>
+
+    <!-- My own javascript -->
+    <script type='application/javascript'>var sentences = {{{convert sentences}}}</script>
+    <script type='text/javascript' src='/javascripts/hbs_dragging.js'></script>
+    
+</body>
+</html>
+

@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
           // if sorting is over
           if ( currentlyLeft.length == 0 ) { 
             complete = true
-            document.getElementById('icon'+id).src='./images/tick.png'
-            const sentenceCompleteAudio = new Audio('./sounds/bell.wav')
+            document.getElementById('icon'+id).src='../images/tick.png'
+            const sentenceCompleteAudio = new Audio('../sounds/bell.wav')
             sentenceCompleteAudio.volume = 0.1
             sentenceCompleteAudio.play()
             sentenceCompleted(id) 
