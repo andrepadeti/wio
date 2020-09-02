@@ -2,9 +2,10 @@
 require("@babel/register")
 
 // only load .env file if the server isn't started in production mode
-if (process.env.NODE_ENV !== 'production') {
+// if (process.env.NODE_ENV !== 'production') {
+  // always load it
   require('dotenv').config();
-}
+// }
 
 /**
  * Module dependencies.
