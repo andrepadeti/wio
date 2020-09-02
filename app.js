@@ -6,7 +6,7 @@ import logger from 'morgan'
 import favicon from 'serve-favicon'
 import hbs, { registerHelper, registerPartials } from 'hbs'
 
-import indexRouter from './routes/index'
+import wioRouter from './routes/wio'
 import usersRouter from './routes/users'
 
 var app = express()
@@ -16,7 +16,8 @@ hbs.registerPartials(join(__dirname, 'views'))
 
 
 // view engine setup
-app.set('views', join(__dirname, 'views'))
+app.set('views', [ join(__dirname, 'views'), join(__dirname, 'views/wio') ])
+
 app.set('view engine', 'hbs')
 
 
@@ -29,7 +30,7 @@ app.use(urlencoded({ extended: false })) // recognize the incoming req obj as st
 app.use(cookieParser()) //for cookies. I need to dive into it some day.
 app.use(express.static(join(__dirname, 'public'))) // from where it'll serve static files, eg css
 
-app.use('/', indexRouter)
+app.use('/wio', wioRouter)
 app.use('/users', usersRouter)
 
 // catch 404 and forward to error handler

@@ -3,7 +3,7 @@
   --nav-color: #1F57B2;
   --title-color: #1FB249;
   --exercise-container-color: #DAF9F7;
-  --sortable-color: #5BE2DB;
+  --sortable-color: #ADF0ED;
   --not-sortable-color: #48DF73;
 }
 
@@ -105,7 +105,7 @@ img {
   font-size: 0.7rem;
   font-family: monospace;
   border: 1px solid #ddd;
-  border-left: 3px solid var(--exercise-container-color);
+  border-left: 3px solid var(--title-color);
   page-break-inside: avoid;
   max-width: 100%;
   overflow: auto;
@@ -180,7 +180,7 @@ img {
 
 /* modal is relatively smaller if on desktop */
 @media (min-width: 768px) {
-  .modal-content { width: 50%; }
+  .modal-content { width: 40%; }
 }
 
 /* animation */
@@ -201,4 +201,25 @@ img {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.games {
+  display: block;
+  background-color: var(--exercise-container-color);
+  color: black;
+  border-radius: 5px;
+  width: 90%;
+  padding: 1rem;
+  margin: auto;
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+
+.games:hover {
+  background-color: var(--nav-color);
+}
+
+/* .games is relatively smaller if on desktop */
+@media (min-width: 768px) {
+  .games { width: 50%; }
 }
