@@ -7,19 +7,22 @@ import favicon from 'serve-favicon'
 import hbs, { registerHelper, registerPartials } from 'hbs'
 
 import wioRouter from './routes/wio'
+import homeRouter from './routes/home'
 import usersRouter from './routes/users'
 
 var app = express()
 
-// register handlebars partials and helpers
-hbs.registerPartials(join(__dirname, 'views'))
-
-
 // view engine setup
-app.set('views', [ join(__dirname, 'views'), join(__dirname, 'views/wio') ])
-
 app.set('view engine', 'hbs')
+app.set('views', [ 
+  join(__dirname, 'views'), 
+  join(__dirname, 'views/common'),  // common-use partials
+  join(__dirname, 'views/wio'),     // words in order 
+  join(__dirname, 'views/home'),    // home
+])
 
+// register handlebars partials
+hbs.registerPartials(join(__dirname, 'views'))
 
 // great article 'what is middleware?'
 // https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded/51844327#:~:text=a.-,express.,use(express.
@@ -30,6 +33,7 @@ app.use(urlencoded({ extended: false })) // recognize the incoming req obj as st
 app.use(cookieParser()) //for cookies. I need to dive into it some day.
 app.use(express.static(join(__dirname, 'public'))) // from where it'll serve static files, eg css
 
+app.use('/', homeRouter)
 app.use('/wio', wioRouter)
 app.use('/users', usersRouter)
 

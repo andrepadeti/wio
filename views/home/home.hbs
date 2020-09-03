@@ -1,0 +1,11 @@
+{{> home/navbar}}
+
+<div class="main-container">
+  {{> common/title title}}
+
+  {{#each games}}
+    <a class='games shadow' href='{{{url}}}'>
+      {{game}}
+    </a>
+  {{/each}}
+</div>

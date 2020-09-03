@@ -18,7 +18,13 @@ router.get('/', async (req, res, next) => {
     sort: { description: 1 } 
   }
   const data = await wio.find({}, options).toArray()
-  res.render('wio/index-layout', { data })
+  res.render('wio/index', 
+    { 
+      layout: 'layout',
+      tabTitle: 'Round English - Words in Order',
+      data
+     }
+  )
 })
 
 
@@ -38,7 +44,12 @@ router.get('/:id', (req, res, next) => {
     .then( ( { title, data } ) => {
       const sentences = loadSentences(data)
       res.locals = { sentences }
-      res.render('wio/game-layout', { title })
+      res.render('wio/game', 
+        {
+          layout: 'layout',
+          tabTitle: `Round English - Words in Order - ${title.main}`,
+          title,
+         })
     })
   // res.sendFile(path.join(__dirname, '/', '../public', 'index.html'))
 
@@ -56,4 +67,5 @@ const obj =
     data: [
       { code: 'the code' },
       { words: 'the words' },
-    ]}
+    ]
+  }

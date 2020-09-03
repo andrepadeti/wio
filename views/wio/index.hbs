@@ -1,0 +1,14 @@
+{{> wio/navbar }}
+
+<div class='main-container'>
+    {{> wio/title 
+      main='Words in Order'
+      subtitle='Index of Activities'
+    }}
+
+    {{#each data}}
+      <a class='games shadow' href='/wio/{{{_id}}}'>
+        {{description}}
+      </a>
+    {{/each}}
+</div>
