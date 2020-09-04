@@ -15,10 +15,10 @@ var app = express()
 // view engine setup
 app.set('view engine', 'hbs')
 app.set('views', [ 
-  join(__dirname, 'views'), 
-  join(__dirname, 'views/common'),  // common-use partials
-  join(__dirname, 'views/wio'),     // words in order 
-  join(__dirname, 'views/home'),    // home
+  join(__dirname, 'views'),
+  // join(__dirname, 'views/common'),  // common-use partials
+  // join(__dirname, 'views/wio'),     // words in order 
+  // join(__dirname, 'views/home'),    // home
 ])
 
 // register handlebars partials

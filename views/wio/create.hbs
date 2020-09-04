@@ -1,0 +1,34 @@
+{{> wio/navbar }}
+
+<div class="main-container">
+    {{> common/title title}}
+    {{> wio/sentences }}
+
+    <form method='POST' action='/wio/submit'>
+      <label for='data'>Enter new game data:</label>
+      <textarea id='data' name='data' rows='40' cols='80'>
+{ 
+  description: 'POST test',
+  title: {
+      main: 'POST test', 
+      subtitle: 'Testing POST' 
+    },
+  data: [
+    { 
+      code: 'One sentence', 
+      words: 'This is one sentence' 
+    },
+    { 
+      code: 'Another sentence', 
+      words: 'This is another sentence' 
+    },
+    { 
+      code: '', 
+      words: 'Third sentence no code.' 
+    },
+  ]
+}
+      </textarea>
+      <input type="submit">
+    </form>
+</div>

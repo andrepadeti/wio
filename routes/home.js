@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
     },
   ]
   
-  res.render('home', 
+  res.render('home/home', 
     { 
       layout: 'layout',
       tabTitle: 'Round English - Home',
