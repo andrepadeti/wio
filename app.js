@@ -6,8 +6,8 @@ import logger from 'morgan'
 import favicon from 'serve-favicon'
 import hbs, { registerHelper, registerPartials } from 'hbs'
 
-import wioRouter from './routes/wio'
 import homeRouter from './routes/home'
+import wioRouter from './routes/wio'
 import usersRouter from './routes/users'
 
 var app = express()

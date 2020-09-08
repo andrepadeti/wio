@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // the audio files
   // the bell audio object is instantiated each time a sentence is completed, in case
   // the student is too fast and completes the next sentence before the audio finishes playing
-  const moveAudio = new Audio('./sounds/move.wav')
+  const moveAudio = new Audio('../sounds/move.wav')
   
   /**
    * @description Function to check whether all sentences have already been sorted

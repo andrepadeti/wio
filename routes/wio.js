@@ -3,11 +3,28 @@ let router = express.Router()
 import hbs from 'hbs'
 import loadSentences from '../public/javascripts/hbs_sentences'
 import { ObjectId } from 'mongodb'
+import { app } from '../app'
 
 // helper to pass sentences to the client javascript file 
 hbs.registerHelper('convert', data => JSON.stringify(data))
 // helper to show @index starting from 1 
 hbs.registerHelper('incremented', index => ++index)
+
+let game = {
+  description: 'Description shows in the games list',
+  title: {
+    main: 'The main title',
+    subtitle: 'The subtitle',
+  },
+  data: [
+    {
+      number: 1,
+      title: 'Sentence 1',
+      placeholder: { comment: 'Comment 1', sentence: 'Sentence 1' },
+    }
+  ]
+}
+
 
 // index of activities route
 router.get('/', async (req, res, next) => {
@@ -29,25 +46,60 @@ router.get('/', async (req, res, next) => {
 	
 // create new activity route
 router.get('/create', (req, res, next) => {
-	res.render('wio/create',
+  res.render('wio/create',
 		{
 			layout: 'layout',
 			tabTitle: 'Round English - Words in Order - Create new game',
 			title: {
 				main: 'New Game',
 				subtitle: 'Create new Words in Order game'
-			}
+      },
+      game,
 		}
 	)
 })
 
-// 
+// add new game to the database
 router.post('/submit', async (req, res) => {
-	const db = req.app.locals.db
-  const wio = db.collection('wio')
-	const data = eval('(' + req.body.data + ')')
-	await wio.insertOne(data)
+  // console.log('submit')
+  // const db = req.app.locals.db
+  // const wio = db.collection('wio')
+	// const data = eval('(' + req.body.data + ')')
+	// await wio.insertOne(data)
 	res.end()
+})
+
+router.get('/add', (req, res, next) => {
+  res.send(game.data.length.toString())
+})
+
+router.post('/add', (req, res) => {
+  // console.log(req.body)
+  
+  /* for this to work, i'll need to POST the whole form back
+  for (let entry in req.body) {
+    if (entry === 'description') game.description = entry
+    if (entry === 'title') game.title.main = entry
+    if (entry === 'subtitle') game.title.subtitle = entry
+  }
+  */
+
+  // update sentence object with new information
+  let sentenceNumber = req.body.sentenceNumber - 1
+  game.data[sentenceNumber].placeholder.comment = req.body.inputComment
+  game.data[sentenceNumber].placeholder.sentence = req.body.inputSentence
+  
+  // create next sentence in the array
+  let nextSentenceNumber = game.data.length + 1
+  game.data.push(
+    {
+      number: nextSentenceNumber,
+      title: `Sentence ${(nextSentenceNumber)}`,
+      placeholder: { comment: `Comment ${(nextSentenceNumber)}`, sentence: `Sentence ${(nextSentenceNumber)}` }
+    }
+  )
+  res.end()
+  // res.redirect('back')
 })
 	
 /* game route */

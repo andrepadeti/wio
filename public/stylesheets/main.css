@@ -99,7 +99,7 @@ img {
   background-color: var(--not-sortable-color);
 }
 
-.code {
+.comment {
   background: #f4f4f4;
   color: #666;
   font-size: 0.7rem;
@@ -222,4 +222,60 @@ img {
 /* .games is relatively smaller if on desktop */
 @media (min-width: 768px) {
   .games { width: 50%; }
+}
+
+.create-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+.create-box {
+  background-color: var(--exercise-container-color);
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.create-box-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.create-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.create-button {
+  font-family:inherit;
+  font-size: inherit;
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  background-color: var(--title-color);
+  border: 0 none; 
+  border-radius: 5px;
+}
+
+input[type=text] {
+  display: block;
+  padding: 5px;
+  margin: 5px auto;
+  width: 100%;
+  border:0;
+  border-radius: 5px;
+  border-bottom:1px solid #eee;
+  /* box-shadow:0 0 15px 4px rgba(0,0,0,0.06); */
+  font-family:inherit;
+  font-size: inherit;
+}
+
+textarea {
+  width:100%;
+  resize: vertical;
+  padding:15px;
+  border-radius:15px;
+  border:0;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  height:450px;
 }

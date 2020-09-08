@@ -11,7 +11,7 @@ Classes and functions to get the sentences prepared to be used
 class Sentence {
     constructor(sentence, id) {
         this.id = id // the id number of the sentence
-        this.code = sentence.code // string that stores the example code 
+        this.comment = sentence.comment // string that stores the sentence comment
         this.text = sentence.words // string that stores the sentence to be sorted
         this.sentenceInOrder = this.text.split(" ") // array that stores the split sentence
         this.currentCorrectWord = 0 // stores how many words are correct already while student is sorting
