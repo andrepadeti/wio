@@ -1,66 +1,64 @@
-{{> wio/navbar }}
+{{> wio/navbar create=false}}
 
 <div class="main-container">
-    {{> common/title title}}
-{{!--
+  {{> common/title title}}
 
-    <div class="create-container">
-      <form method='POST' action='/wio/submit'>
-        <div class="create-box shadow">
-          <label for='description'>Description:</label>
-          <input type="text" id="description" name="description" placeholder="{{game.description}}" />
-          <label for="title">Title:</label>
-          <input type="text" id="title" name="title" placeholder="{{game.title.main}}" />
-          <label for="subtitle">Subtitle:</label>
-          <input type="text" id="subtitle" name="subtitle" placeholder="{{game.title.subtitle}}" />
-        </div>
-
-        !-- hbs: hyphen in filename is replaced with underscore --
-        {{#each game.data}}
-          {{> wio/create_sentence}} 
-        {{/each}}
-
-        <div class="create-buttons">
-          !-- default button type is 'submit', so have to specify  --
-          <button type='button' class="create-button" id="add-sentence" >Add sentence</button>
-          <input class="create-button" type="submit">
-        </div>
-      </form>
-    </div>
-
---}}
-
-
-    <form method='POST' action='/wio/submit'>
-      <label for='data'>Enter new game data:</label>
-      <textarea class="textarea" id='data' name='data'>
-{ 
-  description: 'This shows in the games list',
-  title: {
-      main: 'Title of the game', 
-      subtitle: 'Subtitle of the game' 
-    },
-  data: [
-    { 
-      comment: 'One sentence', 
-      words: 'This is one sentence' 
-    },
-    { 
-      comment: 'Another sentence', 
-      words: 'This is another sentence' 
-    },
-    { 
-      comment: '', 
-      words: 'Third sentence no comment.' 
-    },
-  ]
-}
-      </textarea>
-      <div class="create-buttons">
-        <input class="create-button" type="submit">
-      </div>
+  <!-- empty div to be filled by handlebars -->
+  <div>
+    <form id="wio-form">
     </form>
+  </div>
+
+  <!-- panel template -->
+  <script type="text/x-handlebars-template" id="tplGame">
+    <div class="game__panel">
+      <div class="create-box shadow">
+        <label for='description'>Description:</label>
+        <input type="text" class="game__description-input" id="description" name="description" placeholder="" />
+        <label for="title">Title:</label>
+        <input type="text" class="game__title-input" id="title" name="title" placeholder="" />
+        <label for="subtitle">Subtitle:</label>
+        <input type="text" class="game__subtitle-input" id="subtitle" name="subtitle" placeholder="" />
+      </div>
+      
+      <hr>
+      <h2 class="create-sentence-title">Sentences</h2>
+      
+      <div class="js-section__body">
+        {{!-- i read i needed to escape the moustaches (use backslah '\' before '{{}}') --}}
+        {{!-- so the server would leave it for the client to compile. not doing it. still working --}}
+        {{{sections}}}
+      </div>
+      <div class="create-buttons">
+        <button type="button" class="js-add-section create-button">Add another sentence</a>
+        <!-- <button class="create-button form-cancel">Cancel</button> -->
+        <button class="create-button form-submit" type="submit">Done</button>
+      </div>
+    </div>
+  </script>
+
+  <!-- section template  -->
+  <script type="text/x-handlebars-template" id="tplSentence">
+    <div class="sentence__item create-box create-sentence-box shadow">
+      <!-- <h2 class="create-sentence-title">Sentence</h2> -->
+      <div class="create-sentence-input">
+        <label for="comment">Comment:</label>
+        <input class="sentence__comment-input" type="text" id="comment" name="comment" 
+        placeholder="">
+        <label for="sentence">Sentence:</label>
+        <input class="sentence__words-input" type="text" id="sentence" name="sentence" 
+        placeholder="">
+      </div>
+      <div class="section__tools create-sentence-controls">
+        <i class="fa fa-angle-up fa-2x js-section__control-up"></i>
+        <i class="fa fa-angle-down fa-2x js-section__control-down"></i>
+        <i class="fa fa-times fa-2x js-section__control-remove"></i>
+      </div>
+    </div>
+  </script>
 </div>
 
-
+<script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script type="text/javascript" src="/javascripts/wio-create.js"></script>
+

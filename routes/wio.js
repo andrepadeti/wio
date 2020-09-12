@@ -10,21 +10,27 @@ hbs.registerHelper('convert', data => JSON.stringify(data))
 // helper to show @index starting from 1 
 hbs.registerHelper('incremented', index => ++index)
 
-let game = {
-  description: 'Description shows in the games list',
-  title: {
-    main: 'The main title',
-    subtitle: 'The subtitle',
-  },
-  data: [
-    {
-      number: 1,
-      title: 'Sentence 1',
-      placeholder: { comment: 'Comment 1', sentence: 'Sentence 1' },
-    }
-  ]
-}
+// function to format data received by POST in JSON to object for MongoDB
+const formatForDB = (formData) => {
+  let dbData = {
+      description: formData[0].value,
+      title: {
+          main: formData[1].value,
+          subtitle: formData[2].value,
+      },
+      data: [],
+  }
 
+  let j = 0
+  for (let i=3; i < formData.length; i+=2) {
+      console.log(j)
+      dbData.data[j] = {comment: formData[i].value, words: formData[i+1].value}
+      // dbData.data[j] = {words: formData[i+1].value}
+      j++
+  }
+  
+  return dbData
+}
 
 // index of activities route
 router.get('/', async (req, res, next) => {
@@ -54,63 +60,34 @@ router.get('/create', (req, res, next) => {
 				main: 'New Game',
 				subtitle: 'Create new Words in Order game'
       },
-      game,
+      // game,
 		}
 	)
 })
 
 // add new game to the database
 router.post('/submit', async (req, res) => {
-  // console.log('submit')
-  // const db = req.app.locals.db
-  // const wio = db.collection('wio')
-	// const data = eval('(' + req.body.data + ')')
-	// await wio.insertOne(data)
-	res.end()
-})
-
-router.get('/add', (req, res, next) => {
-  res.send(game.data.length.toString())
-})
-
-router.post('/add', (req, res) => {
-  // console.log(req.body)
+  const db = req.app.locals.db
+  const wio = db.collection('wio')
   
-  /* for this to work, i'll need to POST the whole form back
-  for (let entry in req.body) {
-    if (entry === 'description') game.description = entry
-    if (entry === 'title') game.title.main = entry
-    if (entry === 'subtitle') game.title.subtitle = entry
-  }
-  */
+  const formData = req.body
+  const dbData = formatForDB(formData)
 
-  // update sentence object with new information
-  let sentenceNumber = req.body.sentenceNumber - 1
-  game.data[sentenceNumber].placeholder.comment = req.body.inputComment
-  game.data[sentenceNumber].placeholder.sentence = req.body.inputSentence
-  
-  // create next sentence in the array
-  let nextSentenceNumber = game.data.length + 1
-  game.data.push(
-    {
-      number: nextSentenceNumber,
-      title: `Sentence ${(nextSentenceNumber)}`,
-      placeholder: { comment: `Comment ${(nextSentenceNumber)}`, sentence: `Sentence ${(nextSentenceNumber)}` }
-    }
-  )
+  // await wio.insertOne(dbData)
+  res.send({redirect: '/'})
+  res.redirect(307, '/')
   res.end()
-  // res.redirect('back')
 })
-	
+
 /* game route */
 router.get('/:id', (req, res, next) => {
 	// my string checking doesn't work :-p
-	const regex = /[A-Fa-f0-9]{24}/ //regular expression: 12 hexadecimal characters
+	const regex = /[A-Fa-f0-9]{24}/ //regular expression: 24 hexadecimal characters
 	const id = req.params.id
 	if ( !(regex.test(id)) ) {
 		console.log("no")
 		next() // if not a game id, next()
-	}
+  }
 
 
   const db = req.app.locals.db

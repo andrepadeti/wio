@@ -1,0 +1,35 @@
+{{!-- this version has been replaced by create.hbs --}}
+
+
+<form method='POST' action='/wio/submit'>
+  <label for='data'>Enter new game data:</label>
+  <textarea class="textarea" id='data' name='data'>
+{ 
+  description: 'This shows in the games list',
+  title: {
+      main: 'Title of the game', 
+      subtitle: 'Subtitle of the game' 
+    },
+  data: [
+    { 
+      comment: 'One sentence', 
+      words: 'This is one sentence' 
+    },
+    { 
+      comment: 'Another sentence', 
+      words: 'This is another sentence' 
+    },
+    { 
+      comment: '', 
+      words: 'Third sentence no comment.' 
+    },
+  ]
+}
+  </textarea>
+  <div class="create-buttons">
+    <input class="create-button" type="submit">
+  </div>
+</form>
+
+
+<script type="text/javascript" src="/javascripts/wio-create.js"></script>

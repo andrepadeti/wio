@@ -26,13 +26,22 @@ h2 {
 .nav {
   background-color: var(--nav-color);
   margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-.nav p {
+.nav-left {
   font-size: 1.5em;
   color: white;
   text-align: left;
   padding: 1em 1em;
+  margin-right: auto;
+}
+
+.nav-right {
+  margin-right: 1.5rem;
+  color: white;
 }
 
 .main-container {
@@ -237,12 +246,36 @@ img {
   margin-bottom: 2rem;
 }
 
-.create-box-title {
+.create-sentence-box {
+  display: grid;
+  grid-template-columns: 8fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "create-sentence-title create-sentence-title"
+                       "create-sentence-input create-sentence-controls"
+                       "create-sentence-buttons create-sentence-buttons";
+}
+
+.create-sentence-title {
+  grid-area: create-sentence-title;
   text-align: center;
   margin-bottom: 1rem;
 }
 
+.create-sentence-input {
+  grid-area: create-sentence-input;
+}
+
+.create-sentence-controls {
+  grid-area: create-sentence-controls;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
 .create-buttons {
+  grid-area: create-sentence-buttons;
   display: flex;
   justify-content: flex-end;
 }
@@ -278,4 +311,14 @@ textarea {
   border:0;
   box-shadow:4px 4px 10px rgba(0,0,0,0.06);
   height:450px;
+}
+
+hr {
+  border-top: 1px solid #ccc;
+  height: 1px;
+}
+
+.panel__tools i,
+.section__tools i {
+  cursor: pointer;
 }
