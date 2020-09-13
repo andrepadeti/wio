@@ -41,7 +41,7 @@ router.get('/', async (req, res, next) => {
     sort: { description: 1 } 
   }
   const data = await wio.find({}, options).toArray()
-  res.render('wio/index', 
+  res.render('wio/index/index', 
     { 
 			layout: 'layout',
       tabTitle: 'Round English - Words in Order',
@@ -52,7 +52,7 @@ router.get('/', async (req, res, next) => {
 	
 // create new activity route
 router.get('/create', (req, res, next) => {
-  res.render('wio/create',
+  res.render('wio/create/create',
 		{
 			layout: 'layout',
 			tabTitle: 'Round English - Words in Order - Create new game',
@@ -60,7 +60,6 @@ router.get('/create', (req, res, next) => {
 				main: 'New Game',
 				subtitle: 'Create new Words in Order game'
       },
-      // game,
 		}
 	)
 })
@@ -74,8 +73,6 @@ router.post('/submit', async (req, res) => {
   const dbData = formatForDB(formData)
 
   // await wio.insertOne(dbData)
-  res.send({redirect: '/'})
-  res.redirect(307, '/')
   res.end()
 })
 
@@ -97,17 +94,16 @@ router.get('/:id', (req, res, next) => {
   const query = ObjectId(id)  // get from the parameters
   const options = { projection: { _id: 0, title: 1, data: 1 } }
   
-  wio.findOne(query).then(data => console.log(data))
   wio.findOne(query, options)
     .then( ( { title, data } ) => {
       const sentences = loadSentences(data)
       res.locals = { sentences }
-      res.render('wio/game', 
+      res.render('wio/game/game', 
         {
         	layout: 'layout',
           tabTitle: `Round English - Words in Order - ${title.main}`,
           title,
-         })
+        })
     })
 })
 

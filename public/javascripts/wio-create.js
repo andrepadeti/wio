@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
-
+// document.addEventListener('DOMContentLoaded', () => {
+$(document).ready(() => {
   // retrieve all template data from html
   const tplGame = $('#tplGame').html()
   const tplSentence = $('#tplSentence').html()
@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#wio-form').append(tpl)
   }
    
-   // Section tools
+   // sentences tools
    const addSentence = (elem) => {
-      var tpl = Handlebars.compile(tplSentence)
+      const tpl = Handlebars.compile(tplSentence)
       $('.js-section__body').append(tpl)
    }
 
@@ -57,12 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const formData = $("#wio-form").serializeArray()
     const formDataJSON = JSON.stringify(formData)
 
-    // this implementation gets rid of {'name': 'xxx', 'value':'xxx'}
+    /* this implementation gets rid of {'name': 'xxx', 'value':'xxx'}
+    ** i'm not using it
     var result = { };
     $.each($('form').serializeArray(), function() {
       result[this.name] = this.value;
     });
-
+    */
     return formDataJSON
   }
    
@@ -103,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = getFormData()
         submitForm(formData)
         alert('New game created!')
-        window.location = '/wio'
+        window.location.href = '/wio'
     })
     
     $('#wio-form').on('click', '.form-cancel', e => {
@@ -112,12 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
    
-  const init = () => {
+  const init = ({numOfStartSentences = 1} = {}) => {
     renderForm()
     attachEventListeners()
-    // start with three sentences
-    for (i=0;i<3;i++) $('.js-add-section').trigger('click')
+    // start with numOfStartSentences
+    for (i=0;i<numOfStartSentences;i++) $('.js-add-section').trigger('click')
   }
 
-  init()
+  init({numOfStartSentences: 1})
 })

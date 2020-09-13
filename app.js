@@ -7,6 +7,7 @@ import favicon from 'serve-favicon'
 import hbs, { registerHelper, registerPartials } from 'hbs'
 
 import homeRouter from './routes/home'
+// import gamesListRouter from './routes/games-list'
 import wioRouter from './routes/wio'
 import usersRouter from './routes/users'
 
