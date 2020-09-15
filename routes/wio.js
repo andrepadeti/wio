@@ -23,9 +23,7 @@ const formatForDB = (formData) => {
 
   let j = 0
   for (let i=3; i < formData.length; i+=2) {
-      console.log(j)
       dbData.data[j] = {comment: formData[i].value, words: formData[i+1].value}
-      // dbData.data[j] = {words: formData[i+1].value}
       j++
   }
   

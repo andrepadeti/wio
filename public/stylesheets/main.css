@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Merriweather+Sans&family=Ruda&display=swap');
+
 :root {
   /* define colours */
   --nav-color: #1F57B2;
+  --nav-text: #EDEDED;
+  --nav-hover: #FFFFFF;
   --title-color: #1FB249;
   --exercise-container-color: #DAF9F7;
   --sortable-color: #ADF0ED;
@@ -12,7 +16,9 @@ body {
   padding: 0;
   font-size: 16px;
   background-color: white;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  /* font-family: 'Merriweather Sans', sans-serif; */
+  font-family: 'Ruda', sans-serif;
+  /* font-family: 'EB Garamond', serif;   */
 }
 
 h1 {
@@ -33,15 +39,25 @@ h2 {
 
 .nav-left {
   font-size: 1.5em;
-  color: white;
+  color: var(--nav-text);
   text-align: left;
   padding: 1em 1em;
   margin-right: auto;
+  text-decoration: none;
+}
+
+.nav-left:hover{
+  color: var(--nav-hover);
 }
 
 .nav-right {
   margin-right: 1.5rem;
-  color: white;
+  color: var(--nav-text);
+  text-decoration: none;
+}
+
+.nav-right:hover {
+  color: var(--nav-hover);
 }
 
 .main-container {

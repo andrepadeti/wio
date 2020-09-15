@@ -4,30 +4,36 @@
   {{> common/title title}}
 
   <!-- empty div to be filled by handlebars -->
-  <div>
-    <form id="wio-form">
+  {{!-- <div>
+    <form id="wio-form" name="wio-form" action="">
     </form>
-  </div>
+  </div> --}}
 
   <!-- panel template -->
-  <script type="text/x-handlebars-template" id="tplGame">
+  {{!-- <script type="text/x-handlebars-template" id="tplGame"> --}}
+  <form id="wio-form" name="wio-form" action="">
     <div class="game__panel">
       <div class="create-box shadow">
-        <label for='description'>Description:</label>
-        <input type="text" class="game__description-input" id="description" name="description" placeholder="" />
-        <label for="title">Title:</label>
-        <input type="text" class="game__title-input" id="title" name="title" placeholder="" />
-        <label for="subtitle">Subtitle:</label>
-        <input type="text" class="game__subtitle-input" id="subtitle" name="subtitle" placeholder="" />
+        <p>
+          <label for='description'>Description:</label>
+          <input type="text" class="game__description-input" id="description" name="description" placeholder=""/>
+        </p>
+        <p>
+          <label for="title">Title:</label>
+          <input type="text" class="game__title-input" id="title" name="title" placeholder=""/>
+        </p>
+        <p>
+          <label for="subtitle">Subtitle:</label>
+          <input type="text" class="game__subtitle-input" id="subtitle" name="subtitle" placeholder=""/>
+        </p>
       </div>
       
       <hr>
       <h2 class="create-sentence-title">Sentences</h2>
       
+      {{!-- this empty div holds the sentences  --}}
       <div class="js-section__body">
-        {{!-- i read i needed to escape the moustaches (use backslah '\' before '{{}}') --}}
-        {{!-- so the server would leave it for the client to compile. not doing it. still working --}}
-        {{{sections}}}
+        {{!-- {{{sections}}} --}}
       </div>
       <div class="create-buttons">
         <button type="button" class="js-add-section create-button">Add another sentence</a>
@@ -35,19 +41,26 @@
         <button class="create-button form-submit" type="submit">Done</button>
       </div>
     </div>
-  </script>
+  </form>
+  {{!-- </script> --}}
 
   <!-- section template  -->
   <script type="text/x-handlebars-template" id="tplSentence">
     <div class="sentence__item create-box create-sentence-box shadow">
       <!-- <h2 class="create-sentence-title">Sentence</h2> -->
       <div class="create-sentence-input">
-        <label for="comment">Comment:</label>
-        <input class="sentence__comment-input" type="text" id="comment" name="comment" 
-        placeholder="">
-        <label for="sentence">Sentence:</label>
-        <input class="sentence__words-input" type="text" id="sentence" name="sentence" 
-        placeholder="">
+        <p>
+          {{!-- escape the moustaches (use backslah '\' before '{{}}') --}}
+          {{!-- so the server leaves it for the client to compile. --}}
+          <label for="comment\{{number}}">Comment:</label>
+          <input class="sentence__comment-input" type="text" id="comment\{{number}}" name="comment\{{number}}" 
+          placeholder="">
+        </p>
+        <p>
+          <label for="sentence\{{number}}">Sentence:</label>
+          <input class="sentence__words-input" type="text" id="sentence\{{number}}" name="sentence\{{number}}" 
+          placeholder="">
+        </p>
       </div>
       <div class="section__tools create-sentence-controls">
         <i class="fa fa-angle-up fa-2x js-section__control-up"></i>
@@ -60,5 +73,6 @@
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 <script type="text/javascript" src="/javascripts/wio-create.js"></script>
 
