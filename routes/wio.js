@@ -1,9 +1,9 @@
-import express from 'express'
-let router = express.Router()
-import hbs from 'hbs'
-import loadSentences from '../public/javascripts/hbs_sentences'
-import { ObjectId } from 'mongodb'
-import { app } from '../app'
+const express = require('express')
+const router = express.Router()
+const hbs = require('hbs')
+const loadSentences = require('../public/javascripts/hbs_sentences')
+const ObjectId = require('mongodb').ObjectId
+const app = require('../app')
 
 // helper to pass sentences to the client javascript file 
 hbs.registerHelper('convert', data => JSON.stringify(data))
@@ -105,7 +105,7 @@ router.get('/:id', (req, res, next) => {
     })
 })
 
-export default router
+module.exports = router
 
 const obj =
   { id: 'id',

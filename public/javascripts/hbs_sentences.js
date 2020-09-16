@@ -50,4 +50,4 @@ const loadSentences = sentences => {
     return result
 }
 
-export default loadSentences
+module.exports = loadSentences

@@ -1,5 +1,4 @@
 // #!/usr/bin/env node
-require("@babel/register")
 
 // only load .env file if the server isn't started in production mode
 // if (process.env.NODE_ENV !== 'production') {
@@ -10,7 +9,7 @@ require("@babel/register")
 /**
  * Module dependencies.
  */
-var app = require('../app').default
+var app = require('../app')
 var debug = require('debug')('words-in-order-rehearsal:server')
 var http = require('http')
 var  MongoClient = require('mongodb').MongoClient

@@ -1,6 +1,6 @@
-import express from 'express'
-let router = express.Router()
-import hbs from 'hbs'
+const express = require('express')
+const router = express.Router()
+const hbs = require('hbs')
 
 router.get('/', (req, res, next) => {
   const games = [
@@ -24,4 +24,4 @@ router.get('/', (req, res, next) => {
 
 })
 
-export default router
+module.exports = router

@@ -1,15 +1,16 @@
-import createError from 'http-errors'
-import express, { json, urlencoded } from 'express'
-import { join } from 'path'
-import cookieParser from 'cookie-parser'
-import logger from 'morgan'
-import favicon from 'serve-favicon'
-import hbs, { registerHelper, registerPartials } from 'hbs'
+const createError = require('http-errors')
+const express = require('express')
+const join = require('path').join
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
+const favicon = require('serve-favicon')
+const hbs = require('hbs')
+// import hbs, { registerHelper, registerPartials } from 'hbs'
 
-import homeRouter from './routes/home'
+const homeRouter = require('./routes/home')
 // import gamesListRouter from './routes/games-list'
-import wioRouter from './routes/wio'
-import usersRouter from './routes/users'
+const wioRouter = require('./routes/wio')
+const usersRouter = require('./routes/users')
 
 var app = express()
 
@@ -29,8 +30,8 @@ hbs.registerPartials(join(__dirname, 'views'))
 // https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded/51844327#:~:text=a.-,express.,use(express.
 app.use(favicon(join(__dirname, 'public', 'favicon.ico'))) // serve a favicon
 app.use(logger('dev')) // logging module that generates log (information)
-app.use(json()) // recognize the incoming request object as a json object
-app.use(urlencoded({ extended: false })) // recognize the incoming req obj as strings or arrays
+app.use(express.json()) // recognize the incoming request object as a json object
+app.use(express.urlencoded({ extended: false })) // recognize the incoming req obj as strings or arrays
 app.use(cookieParser()) //for cookies. I need to dive into it some day.
 app.use(express.static(join(__dirname, 'public'))) // from where it'll serve static files, eg css
 
@@ -54,4 +55,4 @@ app.use(function(err, req, res, next) {
   res.render('error')
 })
 
-export default app
+module.exports = app
