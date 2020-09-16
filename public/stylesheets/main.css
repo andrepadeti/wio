@@ -334,7 +334,10 @@ hr {
   height: 1px;
 }
 
-.panel__tools i,
 .section__tools i {
   cursor: pointer;
+}
+/* 404 */
+.center {
+  text-align: center;
 }

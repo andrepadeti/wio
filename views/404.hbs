@@ -1,0 +1,16 @@
+{{> common/navbar create=false}}
+
+<div class="main-container center">
+    <i class="fas fa-heart-broken fa-7x"></i>
+  <h1>
+    {{message}}
+  </h1>
+  <br><br>
+  {{#if error}}
+    <h3>{{error}}</h3>
+    <br><br>
+  {{/if}}
+  <h2>
+    Back to <a href="/">home</a>
+  </h2>
+</div>
