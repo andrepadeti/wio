@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const favicon = require('serve-favicon')
 const hbs = require('hbs')
-// import hbs, { registerHelper, registerPartials } from 'hbs'
 
 const homeRouter = require('./routes/home')
 // import gamesListRouter from './routes/games-list'
@@ -41,6 +40,7 @@ app.use('/users', usersRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  res.status(404).render('404', { message: 'Oops... page not found.'})
   next(createError(404))
 })
 
