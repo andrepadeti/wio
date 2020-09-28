@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon --watch bin --watch public --watch routes --watch views --watch app.js ./bin/server",
+    "dev": "nodemon -e hbs,js,css ./bin/server",
     "start": "node ./bin/server"
   },
   "dependencies": {
@@ -11,6 +11,7 @@
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
+    "handlebars-layouts": "^3.1.4",
     "hbs": "^4.1.1",
     "http-errors": "~1.6.3",
     "mongodb": "^3.6.0",

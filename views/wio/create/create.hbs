@@ -14,18 +14,19 @@
   <form id="wio-form" name="wio-form" action="">
     <div class="game__panel">
       <div class="create-box shadow">
-        <p>
+        <div class="form-group">
           <label for='description'>Description:</label>
-          <input type="text" class="game__description-input" id="description" name="description" placeholder=""/>
-        </p>
-        <p>
+          <input type="text" class="form-control game__description-input" id="description" name="description" aria-describedby="descriptionHelp" placeholder=""/>
+          <small id="descriptionHelp" class="form-text text-muted">This description appears in the list of games to play.</small>
+        </div>
+        <div class="form-group">
           <label for="title">Title:</label>
-          <input type="text" class="game__title-input" id="title" name="title" placeholder=""/>
-        </p>
-        <p>
+          <input type="text" class="form-control game__title-input" id="title" name="title" aria-describedby="titleHelp" placeholder=""/>
+        </div>
+        <div class="form-group">
           <label for="subtitle">Subtitle:</label>
-          <input type="text" class="game__subtitle-input" id="subtitle" name="subtitle" placeholder=""/>
-        </p>
+          <input type="text" class="form-text game__subtitle-input" id="subtitle" name="subtitle" placeholder=""/>
+        </div>
       </div>
       
       <hr>
@@ -69,10 +70,13 @@
       </div>
     </div>
   </script>
+
+  {{!-- {{> layout }} --}}
+    {{#*inline "scripts-block" }}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+      <script src="/javascripts/wio-create.js"></script>
+    {{/inline }}
+  {{!-- {{/layout }} --}}
+
 </div>
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-<script type="text/javascript" src="/javascripts/wio-create.js"></script>
-

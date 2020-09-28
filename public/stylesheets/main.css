@@ -2,13 +2,13 @@
 
 :root {
   /* define colours */
-  --nav-color: #1F57B2;
-  --nav-text: #EDEDED;
-  --nav-hover: #FFFFFF;
-  --title-color: #1FB249;
-  --exercise-container-color: #DAF9F7;
-  --sortable-color: #ADF0ED;
-  --not-sortable-color: #48DF73;
+  --nav-color: #1f57b2;
+  --nav-text: #ededed;
+  --nav-hover: #ffffff;
+  --title-color: #1fb249;
+  --exercise-container-color: #daf9f7;
+  --sortable-color: #adf0ed;
+  --not-sortable-color: #48df73;
 }
 
 body {
@@ -29,7 +29,7 @@ h2 {
   font-size: 1.2em;
 }
 
-.nav {
+/* .nav {
   background-color: var(--nav-color);
   margin-bottom: 2rem;
   display: flex;
@@ -58,7 +58,7 @@ h2 {
 
 .nav-right:hover {
   color: var(--nav-hover);
-}
+} */
 
 .main-container {
   max-width: 900px;
@@ -73,8 +73,8 @@ h2 {
   border-radius: 5px;
   margin-bottom: 4em;
 }
- 
-.exercise-container{
+
+.exercise-container {
   background-color: var(--exercise-container-color);
   border-radius: 5px;
   margin-top: 1.5rem;
@@ -83,28 +83,28 @@ h2 {
   display: grid;
   grid-template-columns: 11fr 1fr;
   grid-template-rows: 1;
-  grid-template-areas: "sentence check";
+  grid-template-areas: 'sentence check';
 }
 
-.sentence{
+.sentence {
   grid-area: sentence;
-  padding: 1rem; 
+  padding: 1rem;
   /* this item/fraction of the grid is a flexbox itself */
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   align-items: center;
 }
 
-.word { 
-  font-size: 1.1em; 
+.word {
+  font-size: 1.1em;
   margin: 5px 3px;
-  padding: 3px 10px; 
+  padding: 3px 10px;
   border: thin solid black;
   border-radius: 5px;
 }
 
-.check{
+.check {
   grid-area: check;
   place-self: center center; /* shortcut for align-self (inline axis) and justify-self (block axis) */
 }
@@ -139,17 +139,11 @@ img {
   margin-bottom: 1em;
 }
 
-.sentence-number{
+.sentence-number {
   font-size: 1.5em;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.shadow{
-  -webkit-box-shadow: 0 10px 6px -6px #777;
-  -moz-box-shadow: 0 10px 6px -6px #777;
-  box-shadow: 10px 10px 6px -6px #777;
 }
 
 /* modal classes */
@@ -163,8 +157,8 @@ img {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 .modal-header {
@@ -198,20 +192,28 @@ img {
   padding: 0;
   border: 1px solid #888;
   width: 90%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation-name: animatetop;
-  animation-duration: 0.4s
+  animation-duration: 0.4s;
 }
 
 /* modal is relatively smaller if on desktop */
 @media (min-width: 768px) {
-  .modal-content { width: 40%; }
+  .modal-content {
+    width: 40%;
+  }
 }
 
 /* animation */
 @keyframes animatetop {
-  from {top: -300px; opacity: 0}
-  to {top: 0; opacity: 1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 /* close button */
@@ -246,7 +248,9 @@ img {
 
 /* .games is relatively smaller if on desktop */
 @media (min-width: 768px) {
-  .games { width: 50%; }
+  .games {
+    width: 50%;
+  }
 }
 
 .create-container {
@@ -266,9 +270,10 @@ img {
   display: grid;
   grid-template-columns: 8fr 1fr;
   grid-template-rows: auto;
-  grid-template-areas: "create-sentence-title create-sentence-title"
-                       "create-sentence-input create-sentence-controls"
-                       "create-sentence-buttons create-sentence-buttons";
+  grid-template-areas:
+    'create-sentence-title create-sentence-title'
+    'create-sentence-input create-sentence-controls'
+    'create-sentence-buttons create-sentence-buttons';
 }
 
 .create-sentence-title {
@@ -289,7 +294,6 @@ img {
   align-items: center;
 }
 
-
 .create-buttons {
   grid-area: create-sentence-buttons;
   display: flex;
@@ -297,36 +301,36 @@ img {
 }
 
 .create-button {
-  font-family:inherit;
+  font-family: inherit;
   font-size: inherit;
   padding: 0.5rem 1rem;
   margin-left: 1rem;
   background-color: var(--title-color);
-  border: 0 none; 
+  border: 0 none;
   border-radius: 5px;
 }
 
-input[type=text] {
+input[type='text'] {
   display: block;
   padding: 5px;
   margin: 5px auto;
   width: 100%;
-  border:0;
+  border: 0;
   border-radius: 5px;
-  border-bottom:1px solid #eee;
+  border-bottom: 1px solid #eee;
   /* box-shadow:0 0 15px 4px rgba(0,0,0,0.06); */
-  font-family:inherit;
+  font-family: inherit;
   font-size: inherit;
 }
 
 textarea {
-  width:100%;
+  width: 100%;
   resize: vertical;
-  padding:15px;
-  border-radius:15px;
-  border:0;
-  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
-  height:450px;
+  padding: 15px;
+  border-radius: 15px;
+  border: 0;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+  height: 450px;
 }
 
 hr {

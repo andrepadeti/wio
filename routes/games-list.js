@@ -1,6 +1,7 @@
 // index of activities route
 router.get('/', async (req, res, next) => {
-	const db = req.app.locals.db
+  const baseScripts = req.app.locals.baseScripts
+  const db = req.app.locals.db
   const wio = db.collection('wio')
   const options = { 
     projection: { description: 1 }, 
@@ -11,7 +12,8 @@ router.get('/', async (req, res, next) => {
     { 
 			layout: 'layout',
       tabTitle: 'Round English - Words in Order',
-      data
+      data,
+      // scripts: baseScripts,
 		}
 	)
 })

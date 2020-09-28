@@ -1,11 +1,15 @@
 {{> common/navbar}}
 
-<div class="main-container">
+<div class="container p-3">
   {{> common/title title}}
 
+  <div class="container-sm">
   {{#each games}}
-    <a class='games shadow' href='{{{url}}}'>
-      {{game}}
-    </a>
+    <div class="row">
+      <a class='btn btn-outline-primary w-50 mb-3 p-3 mx-auto shadow' href='{{{url}}}'>
+        {{game}}
+      </a>
+    </div>
   {{/each}}
+  </div>
 </div>

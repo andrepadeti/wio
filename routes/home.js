@@ -3,25 +3,16 @@ const router = express.Router()
 const hbs = require('hbs')
 
 router.get('/', (req, res, next) => {
-  const games = [
-    { 
-      game: 'Words in Order',
-      url: '/wio',
+  const baseScripts = req.app.locals.baseScripts
+  res.render('home/home', {
+    layout: 'layout',
+    tabTitle: 'Round English - Home',
+    title: {
+      main: 'ELT Games',
+      subtitle: 'A collection of ELT Games',
     },
-  ]
-  
-  res.render('home/home', 
-    { 
-      layout: 'layout',
-      tabTitle: 'Round English - Home',
-      title: { 
-        main: 'ELT Games',
-        subtitle: 'A collection of ELT Games',
-      },
-      games,
-    })
-  // res.sendFile(path.join(__dirname, '/', '../public', 'index.html'))
-
+    scripts: baseScripts,
+  })
 })
 
 module.exports = router

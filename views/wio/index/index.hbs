@@ -1,14 +1,19 @@
 {{> common/navbar create=true}}
 
-<div class='main-container'>
+<div class='container p-3'>
     {{> common/title 
       main='Words in Order'
       subtitle='Index of Activities'
     }}
 
+    <div class="container-sm">
+
     {{#each data}}
-      <a class='games shadow' href='/wio/{{{_id}}}'>
+    <div class="row">
+      <a class='btn btn-outline-primary w-50 mb-3 p-3 mx-auto shadow' href='/wio/{{{_id}}}'>
         {{description}}
       </a>
+    </div>
     {{/each}}
+    </div>
 </div>
