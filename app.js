@@ -1,17 +1,36 @@
 const createError = require('http-errors')
 const express = require('express')
+const app = express()
 const join = require('path').join
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const favicon = require('serve-favicon')
 const hbs = require('hbs')
+const flash = require('express-flash')
+const session = require('express-session')
+const passport = require('passport')
+
+const initializePassport = require('./passport-config')
+initializePassport(
+  passport,
+  async name => {
+    const db = app.locals.db
+    const query = { name }
+    const result = await db.collection('users').findOne(query)
+    return result
+  },
+  async id => {
+    const db = app.locals.db
+    const query = { _id: id }
+    const result = await db.collection('users').findOne(query)
+    return result
+  }
+)
 
 const homeRouter = require('./routes/home')
 // import gamesListRouter from './routes/games-list'
 const wioRouter = require('./routes/wio')
 const usersRouter = require('./routes/users')
-
-var app = express()
 
 // view engine setup
 app.set('view engine', 'hbs')
@@ -27,6 +46,16 @@ hbs.registerPartials(join(__dirname, 'views'))
 
 // great article 'what is middleware?'
 // https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded/51844327#:~:text=a.-,express.,use(express.
+app.use(flash())
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+)
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(favicon(join(__dirname, 'public', 'favicon.ico'))) // serve a favicon
 app.use(logger('dev')) // logging module that generates log (information)
 app.use(express.json()) // recognize the incoming request object as a json object

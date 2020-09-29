@@ -310,7 +310,7 @@ img {
   border-radius: 5px;
 }
 
-input[type='text'] {
+/* input[type='text'] {
   display: block;
   padding: 5px;
   margin: 5px auto;
@@ -321,7 +321,7 @@ input[type='text'] {
   /* box-shadow:0 0 15px 4px rgba(0,0,0,0.06); */
   font-family: inherit;
   font-size: inherit;
-}
+} */
 
 textarea {
   width: 100%;

@@ -36,6 +36,7 @@ const formatForDB = formData => {
 
 // index of activities route
 router.get('/', async (req, res, next) => {
+  console.log(req.user)
   const baseScripts = req.app.locals.baseScripts
   const db = req.app.locals.db
   const wio = db.collection('wio')

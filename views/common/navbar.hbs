@@ -29,9 +29,11 @@
           <a class="nav-link" href="/wio/create"><i class="fas fa-plus"></i> Create New</a>
         </li>
       {{/if}}
-      <li class="nav-item">
-        <a href="/login" class="nav-link"><i class="fas fa-sign-in-alt"></i> Login</a>
-      </li>
+      {{#if login}}
+        <li class="nav-item">
+          <a href="/users/login" class="nav-link"><i class="fas fa-sign-in-alt"></i> Login</a>
+        </li>
+      {{/if}}
     </ul>
   </div>
 </nav>

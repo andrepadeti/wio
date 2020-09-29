@@ -4,6 +4,7 @@ const hbs = require('hbs')
 
 router.get('/', (req, res, next) => {
   const baseScripts = req.app.locals.baseScripts
+  console.log(req.user)
   res.render('home/home', {
     layout: 'layout',
     tabTitle: 'Round English - Home',
