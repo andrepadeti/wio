@@ -2,9 +2,9 @@ const express = require('express')
 const router = express.Router()
 const hbs = require('hbs')
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   const baseScripts = req.app.locals.baseScripts
-  console.log(req.user)
+  if (req.user) console.log(req.user._id)
   res.render('home/home', {
     layout: 'layout',
     tabTitle: 'Round English - Home',
@@ -12,7 +12,6 @@ router.get('/', (req, res, next) => {
       main: 'ELT Games',
       subtitle: 'A collection of ELT Games',
     },
-    scripts: baseScripts,
   })
 })
 

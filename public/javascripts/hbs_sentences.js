@@ -43,8 +43,8 @@ class Sentence {
 
 // function to organise all sentence objects in an array
 const loadSentences = sentences => {
-    let result = []
-    sentences.forEach((currentValue, index) => {
+  let result = []
+  sentences.forEach((currentValue, index) => {
       result.push(new Sentence(currentValue, index))
     })
     return result

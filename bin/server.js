@@ -12,7 +12,9 @@ require('dotenv').config()
 var app = require('../app')
 var debug = require('debug')('words-in-order-rehearsal:server')
 var http = require('http')
-var MongoClient = require('mongodb').MongoClient
+// var MongoClient = require('mongodb').MongoClient
+const mongoose = require('mongoose')
+const User = require('../models/User')
 
 /**
  * Get port from environment and store in Express.
@@ -29,12 +31,11 @@ var server = http.createServer(app)
  * Listen on provided port, on all network interfaces.
  */
 
-MongoClient.connect(process.env.DB_URI, {
+mongoose.connect(process.env.DB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-  .then(client => {
-    var db = client.db('elt')
+  .then(db => {
     app.locals.db = db
     server.listen(port)
     server.on('error', onError)

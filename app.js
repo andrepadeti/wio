@@ -11,18 +11,19 @@ const session = require('express-session')
 const passport = require('passport')
 
 const initializePassport = require('./passport-config')
+const User = require('./models/User')
 initializePassport(
   passport,
   async name => {
     const db = app.locals.db
     const query = { name }
-    const result = await db.collection('users').findOne(query)
+    const result = await User.findOne(query)
     return result
   },
   async id => {
     const db = app.locals.db
     const query = { _id: id }
-    const result = await db.collection('users').findOne(query)
+    const result = await User.findOne(query)
     return result
   }
 )
@@ -72,20 +73,11 @@ const games = [
 ]
 app.locals.games = games
 
-const baseScripts = [
-  {
-    script: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js',
-  },
-  {
-    script:
-      'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js',
-  },
-  {
-    script:
-      'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js',
-  },
-]
-app.locals.baseScripts = baseScripts
+// user middleware
+app.use(async (req, res, next) => {
+  res.locals.user = req.user
+  next()
+})
 
 app.use('/', homeRouter)
 app.use('/wio', wioRouter)
