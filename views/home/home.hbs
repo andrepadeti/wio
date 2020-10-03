@@ -1,15 +1,13 @@
 {{> common/navbar login=true}}
 
-<div class="container p-3">
-  {{> common/title title}}
-
-  <div class="container-sm">
-  {{#each games}}
-    <div class="row">
-      <a class='btn btn-outline-primary w-50 mb-3 p-3 mx-auto shadow' href='{{{url}}}'>
-        {{game}}
-      </a>
-    </div>
-  {{/each}}
+<div class="container">
+  <div class="jumbotron text-center mt-5">
+    <h1 class="display-4"><i class="fab fa-leanpub"></i> Language Games</h1>
+    <p class="lead">Welcome to Language Games! Here you will find a collection of games to play with your students.</p>
+    <hr class="my-4">
+    <p>This is just the beginning. Here's the available game:</p>
+    {{#each games}}
+      <a class="btn btn-primary btn-lg p-3" href="{{{url}}}" role="button">{{game}}</a>
+    {{/each}}
   </div>
 </div>

@@ -10,7 +10,7 @@ const flash = require('express-flash')
 const session = require('express-session')
 const passport = require('passport')
 
-const initializePassport = require('./passport-config')
+const { initializePassport } = require('./bin/passport-config')
 const User = require('./models/User')
 initializePassport(
   passport,
@@ -57,11 +57,11 @@ app.use(
 )
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(favicon(join(__dirname, 'public', 'favicon.ico'))) // serve a favicon
+app.use(favicon(join(__dirname, 'public', 'favicon.ico'))) // serves a favicon
 app.use(logger('dev')) // logging module that generates log (information)
-app.use(express.json()) // recognize the incoming request object as a json object
-app.use(express.urlencoded({ extended: false })) // recognize the incoming req obj as strings or arrays
-app.use(cookieParser()) //for cookies. I need to dive into it some day.
+app.use(express.json()) // recognizes the incoming request object as a json object
+app.use(express.urlencoded({ extended: false })) // recognizes the incoming req obj as strings or arrays
+app.use(cookieParser()) // for cookies. I need to dive into it some day.
 app.use(express.static(join(__dirname, 'public'))) // from where it'll serve static files, eg css
 
 // global variables

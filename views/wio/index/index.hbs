@@ -1,19 +1,19 @@
-{{> common/navbar create=true login=true}}
+{{> common/navbar create=true}}
 
-<div class='container p-3'>
-    {{> common/title 
-      main='Words in Order'
-      subtitle='Index of Activities'
-    }}
+<div class='container'>
+  {{> common/title title}}
 
-    <div class="container-sm">
-
+  <div class="container-sm">
     {{#each data}}
     <div class="row">
-      <a class='btn btn-outline-primary w-50 mb-3 p-3 mx-auto shadow' href='/wio/{{{_id}}}'>
+      <div class="col"></div>
+      <div class="col-sm-8">
+      <a class='btn btn-block btn-primary mb-3 p-3 mx-auto shadow' href='/wio/{{{_id}}}'>
         {{description}}
       </a>
+      </div>
+      <div class="col"></div>
     </div>
     {{/each}}
-    </div>
+  </div>
 </div>

@@ -1,16 +1,8 @@
 {{> common/navbar create=false}}
 
-<div class="main-container">
+<div class="container">
   {{> common/title title}}
 
-  <!-- empty div to be filled by handlebars -->
-  {{!-- <div>
-    <form id="wio-form" name="wio-form" action="">
-    </form>
-  </div> --}}
-
-  <!-- panel template -->
-  {{!-- <script type="text/x-handlebars-template" id="tplGame"> --}}
   <form id="wio-form" name="wio-form" action="">
     <div class="game__panel">
       <div class="create-box shadow">
@@ -25,7 +17,7 @@
         </div>
         <div class="form-group">
           <label for="subtitle">Subtitle:</label>
-          <input type="text" class="form-text game__subtitle-input" id="subtitle" name="subtitle" placeholder=""/>
+          <input type="text" class="form-control game__subtitle-input" id="subtitle" name="subtitle" placeholder=""/>
         </div>
       </div>
       
@@ -36,32 +28,32 @@
       <div class="js-section__body">
         {{!-- {{{sections}}} --}}
       </div>
-      <div class="create-buttons">
-        <button type="button" class="js-add-section create-button">Add another sentence</a>
+      <div class="create-buttons mb-4">
+        <button type="button" class="js-add-section btn btn-secondary mr-3">Add another sentence</a>
         <!-- <button class="create-button form-cancel">Cancel</button> -->
-        <button class="create-button form-submit" type="submit">Done</button>
+        <button class="btn btn-primary form-submit" type="submit">Done</button>
       </div>
     </div>
   </form>
-  {{!-- </script> --}}
 
   <!-- section template  -->
   <script type="text/x-handlebars-template" id="tplSentence">
     <div class="sentence__item create-box create-sentence-box shadow">
       <!-- <h2 class="create-sentence-title">Sentence</h2> -->
       <div class="create-sentence-input">
-        <p>
+        <div class="form-group">
           {{!-- escape the moustaches (use backslah '\' before '{{}}') --}}
           {{!-- so the server leaves it for the client to compile. --}}
           <label for="comment\{{number}}">Comment:</label>
-          <input class="sentence__comment-input" type="text" id="comment\{{number}}" name="comment\{{number}}" 
+          <input class="form-control sentence__comment-input" type="text" id="comment\{{number}}" name="comment\{{number}}" aria-describedby="commentHelp" 
           placeholder="">
-        </p>
-        <p>
+          <small id="commentHelp" class="form-text text-muted">Write a short comment to help students with this particular sentence (optional).</small>
+        </div>
+        <div class="form-group">
           <label for="sentence\{{number}}">Sentence:</label>
-          <input class="sentence__words-input" type="text" id="sentence\{{number}}" name="sentence\{{number}}" 
+          <input class="form-control sentence__words-input" type="text" id="sentence\{{number}}" name="sentence\{{number}}" 
           placeholder="">
-        </p>
+        </div>
       </div>
       <div class="section__tools create-sentence-controls">
         <i class="fas fa-angle-up fa-2x js-section__control-up"></i>
@@ -70,13 +62,5 @@
       </div>
     </div>
   </script>
-
-  {{!-- {{> layout }} --}}
-    {{#*inline "scripts-block" }}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-      <script src="/javascripts/wio-create.js"></script>
-    {{/inline }}
-  {{!-- {{/layout }} --}}
 
 </div>

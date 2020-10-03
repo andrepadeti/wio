@@ -5,7 +5,7 @@
   --nav-color: #1f57b2;
   --nav-text: #ededed;
   --nav-hover: #ffffff;
-  --title-color: #1fb249;
+  --title-color: #0275d8;
   --exercise-container-color: #daf9f7;
   --sortable-color: #adf0ed;
   --not-sortable-color: #48df73;
@@ -29,49 +29,12 @@ h2 {
   font-size: 1.2em;
 }
 
-/* .nav {
-  background-color: var(--nav-color);
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.nav-left {
-  font-size: 1.5em;
-  color: var(--nav-text);
-  text-align: left;
-  padding: 1em 1em;
-  margin-right: auto;
-  text-decoration: none;
-}
-
-.nav-left:hover{
-  color: var(--nav-hover);
-}
-
-.nav-right {
-  margin-right: 1.5rem;
-  color: var(--nav-text);
-  text-decoration: none;
-}
-
-.nav-right:hover {
-  color: var(--nav-hover);
-} */
-
-.main-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1em;
-}
-
 .title {
-  padding: 1em;
-  text-align: center;
+  /* padding: 1em; */
+  /* text-align: center; */
   background-color: var(--title-color);
-  border-radius: 5px;
-  margin-bottom: 4em;
+  /* border-radius: 5px; */
+  /* margin-bottom: 4em; */
 }
 
 .exercise-container {
@@ -144,90 +107,6 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-/* modal classes */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 5rem; /* location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
-
-.modal-header {
-  padding: 1rem;
-  background-color: var(--title-color);
-  color: white;
-  /* flexbox, one item to the left, the other to the right */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.modal-body {
-  padding: 1rem;
-}
-
-.modal-footer {
-  padding: 1rem;
-  background-color: var(--title-color);
-  color: white;
-  /* flexbox right-side aligned */
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 90%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  animation-name: animatetop;
-  animation-duration: 0.4s;
-}
-
-/* modal is relatively smaller if on desktop */
-@media (min-width: 768px) {
-  .modal-content {
-    width: 40%;
-  }
-}
-
-/* animation */
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
-
-/* close button */
-.close {
-  color: #aaa;
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
 }
 
 .games {
@@ -310,19 +189,6 @@ img {
   border-radius: 5px;
 }
 
-/* input[type='text'] {
-  display: block;
-  padding: 5px;
-  margin: 5px auto;
-  width: 100%;
-  border: 0;
-  border-radius: 5px;
-  border-bottom: 1px solid #eee;
-  /* box-shadow:0 0 15px 4px rgba(0,0,0,0.06); */
-  font-family: inherit;
-  font-size: inherit;
-} */
-
 textarea {
   width: 100%;
   resize: vertical;
@@ -341,11 +207,8 @@ hr {
 .section__tools i {
   cursor: pointer;
 }
+
 /* 404 */
 .center {
   text-align: center;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 9d8ce16b9417004cc2660ff8b3a90f0c6c3e7020

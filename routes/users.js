@@ -3,8 +3,9 @@ var router = express.Router()
 const bcrypt = require('bcrypt')
 const passport = require('passport')
 const User = require('../models/User')
+const { checkNotAuthenticated } = require('../bin/passport-config')
 
-router.get('/login', (req, res, next) => {
+router.get('/login', checkNotAuthenticated, (req, res, next) => {
   const success_msg = req.flash('success_msg')
   const error_msg = req.flash('error')
   res.render('users/login', {

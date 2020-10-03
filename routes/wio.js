@@ -6,6 +6,7 @@ const loadSentences = require('../public/javascripts/hbs_sentences')
 const app = require('../app')
 const Wio = require('../models/Wio')
 const mongoose = require('mongoose')
+const { checkAuthenticated } = require('../bin/passport-config')
 
 // helper to pass sentences to the client javascript file
 hbs.registerHelper('convert', data => JSON.stringify(data))
@@ -16,7 +17,6 @@ hbs.registerHelper('incremented', index => ++index)
 router.get('/', async (req, res, next) => {
   let userId = null
   if (req.user) userId = req.user._id
-  console.log(userId);
   const options = {
     projection: { description: 1 },
     sort: { description: 1 },
@@ -28,6 +28,10 @@ router.get('/', async (req, res, next) => {
     res.render('wio/index/index', {
       layout: 'layout',
       tabTitle: 'Round English - Words in Order',
+      title: { 
+        main: 'Words in Order', 
+        subtitle: 'Index of Activities' 
+      },
       data,
     })
   } catch (error) {
@@ -39,7 +43,8 @@ router.get('/', async (req, res, next) => {
 })
 
 // create new activity route
-router.get('/create', (req, res, next) => {
+router.get('/create', checkAuthenticated, (req, res, next) => {
+// router.get('/create', (req, res, next) => {
   const scripts = [
     {
       script:
