@@ -36,6 +36,7 @@ mongoose.connect(process.env.DB_URI, {
   useUnifiedTopology: true,
 })
   .then(db => {
+    module.exports = db
     app.locals.db = db
     server.listen(port)
     server.on('error', onError)

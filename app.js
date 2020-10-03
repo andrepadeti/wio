@@ -8,6 +8,9 @@ const favicon = require('serve-favicon')
 const hbs = require('hbs')
 const flash = require('express-flash')
 const session = require('express-session')
+const mongoose = require('mongoose')
+const MongoStore = require('connect-mongo')(session)
+const db = require('./bin/server')
 const passport = require('passport')
 
 const { initializePassport } = require('./bin/passport-config')
@@ -53,6 +56,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 )
 app.use(passport.initialize())

@@ -28,9 +28,9 @@ router.get('/', async (req, res, next) => {
     res.render('wio/index/index', {
       layout: 'layout',
       tabTitle: 'Round English - Words in Order',
-      title: { 
-        main: 'Words in Order', 
-        subtitle: 'Index of Activities' 
+      title: {
+        main: 'Words in Order',
+        subtitle: 'Index of Activities'
       },
       data,
     })
@@ -44,7 +44,7 @@ router.get('/', async (req, res, next) => {
 
 // create new activity route
 router.get('/create', checkAuthenticated, (req, res, next) => {
-// router.get('/create', (req, res, next) => {
+  // router.get('/create', (req, res, next) => {
   const scripts = [
     {
       script:
@@ -90,7 +90,6 @@ router.get('/:id', async (req, res, next) => {
       error: 'Not a game ID',
     })
   }
-
   try {
     const options = { projection: { _id: 0, title: 1, data: 1 } }
     const { title = null, data = null } = await Wio.findOne(
