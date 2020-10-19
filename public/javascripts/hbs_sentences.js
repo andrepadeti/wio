@@ -17,7 +17,7 @@ class Sentence {
     this.currentCorrectWord = 0 // stores how many words are correct already while student is sorting
     this.currentlyLeft = [] // array that stores the words still left to be sorted
     this.complete = false // becames true when sentence is sorted
-    this.sentenceShuffled = this.shuffle // array that stores the shuffled sentence
+    this.sentenceShuffled = this.shuffle() // array that stores the shuffled sentence
   }
 
   shuffle() {

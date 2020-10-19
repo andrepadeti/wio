@@ -12,6 +12,7 @@ const mongoose = require('mongoose')
 const MongoStore = require('connect-mongo')(session)
 const db = require('./bin/server')
 const passport = require('passport')
+const cors = require('cors')
 
 const { initializePassport } = require('./bin/passport-config')
 const User = require('./models/User')
@@ -67,6 +68,7 @@ app.use(express.json()) // recognizes the incoming request object as a json obje
 app.use(express.urlencoded({ extended: false })) // recognizes the incoming req obj as strings or arrays
 app.use(cookieParser()) // for cookies. I need to dive into it some day.
 app.use(express.static(join(__dirname, 'public'))) // from where it'll serve static files, eg css
+app.use(cors()) // avoid cross origin errors when connecting frontend and backend
 
 // global variables
 const games = [
@@ -83,9 +85,17 @@ app.use(async (req, res, next) => {
   next()
 })
 
-app.use('/', homeRouter)
-app.use('/wio', wioRouter)
-app.use('/users', usersRouter)
+const address = process.env.REACT ? '/api' : ''
+app.use(address + '/wio', wioRouter)
+app.use(address + '/users', usersRouter)
+app.use(address + '/', homeRouter)
+
+if (process.env.REACT) {
+  app.use(express.static(join(__dirname, '/client/build')))
+  app.use('/', (req, res) => {
+    res.sendFile(join(__dirname, '/client/build/index.html'))
+  })
+}
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

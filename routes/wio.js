@@ -25,15 +25,20 @@ router.get('/', async (req, res, next) => {
   try {
     const data = await Wio.find({ createdBy: userId }, null, options)
     if (data === null) throw error
-    res.render('wio/index/index', {
-      layout: 'layout',
-      tabTitle: 'Round English - Words in Order',
-      title: {
-        main: 'Words in Order',
-        subtitle: 'Index of Activities'
-      },
-      data,
-    })
+
+    if (process.env.REACT) {
+      res.json(data)
+    } else {
+      res.render('wio/index/index', {
+        layout: 'layout',
+        tabTitle: 'Round English - Words in Order',
+        title: {
+          main: 'Words in Order',
+          subtitle: 'Index of Activities',
+        },
+        data,
+      })
+    }
   } catch (error) {
     res.render('404', {
       message: "Oops... we've had problems.",
@@ -99,13 +104,17 @@ router.get('/:id', async (req, res, next) => {
     )
     if (title === null) throw error
     const sentences = loadSentences(data)
-    // res.locals = { sentences }
-    res.render('wio/game/game', {
-      layout: 'layout',
-      tabTitle: `Round English - Words in Order - ${title.main}`,
-      title,
-      sentences,
-    })
+    if (process.env.REACT) {
+      console.log(sentences)
+      res.json({title, sentences})
+    } else {
+      res.render('wio/game/game', {
+        layout: 'layout',
+        tabTitle: `Round English - Words in Order - ${title.main}`,
+        title,
+        sentences,
+      })
+    }
   } catch (error) {
     res.render('404', {
       message: "Oops... we've had problems.",
