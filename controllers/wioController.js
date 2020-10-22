@@ -1,20 +1,10 @@
-const express = require('express')
-const router = express.Router()
-const createError = require('http-errors')
 const hbs = require('hbs')
 const loadSentences = require('../public/javascripts/hbs_sentences')
-const app = require('../app')
 const Wio = require('../models/Wio')
 const mongoose = require('mongoose')
-const { checkAuthenticated } = require('../bin/passport-config')
-
-// helper to pass sentences to the client javascript file
-hbs.registerHelper('convert', data => JSON.stringify(data))
-// helper to show @index starting from 1
-hbs.registerHelper('incremented', index => ++index)
 
 // index of activities route
-router.get('/', async (req, res, next) => {
+exports.indexOfActivities = async (req, res, next) => {
   let userId = null
   if (req.user) userId = req.user._id
   const options = {
@@ -45,23 +35,22 @@ router.get('/', async (req, res, next) => {
       error,
     })
   }
-})
+}
 
 // create new activity route
-router.get('/create', checkAuthenticated, (req, res, next) => {
-  // router.get('/create', (req, res, next) => {
+exports.createNewActivity = (req, res, next) => {
   const scripts = [
     {
       script:
-        'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js',
     },
     {
       script:
-        'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js',
     },
     { script: '/javascripts/wio-create.js' },
   ]
-
+  
   res.render('wio/create/create', {
     layout: 'layout',
     tabTitle: 'Round English - Words in Order - Create new game',
@@ -71,10 +60,10 @@ router.get('/create', checkAuthenticated, (req, res, next) => {
     },
     scripts,
   })
-})
+}
 
 // add new game to the database
-router.post('/submit', async (req, res) => {
+exports.insertNewActivity = async (req, res) => {
   const formData = req.body
   const dbData = formatForDB(formData)
   const newGame = new Wio(dbData)
@@ -82,10 +71,10 @@ router.post('/submit', async (req, res) => {
   newGame.createdBy = userId
   await newGame.save()
   res.end()
-})
+}
 
-/* game route */
-router.get('/:id', async (req, res, next) => {
+// game route 
+exports.wioGame = async (req, res, next) => {
   // string checking
   const regex = /[A-Fa-f0-9]{24}/ //regular expression: 24 hexadecimal characters
   const id = req.params.id
@@ -101,18 +90,18 @@ router.get('/:id', async (req, res, next) => {
       { _id: id },
       null,
       options
-    )
-    if (title === null) throw error
-    const sentences = loadSentences(data)
-    if (process.env.REACT) {
-      console.log(sentences)
-      res.json({title, sentences})
-    } else {
-      res.render('wio/game/game', {
-        layout: 'layout',
-        tabTitle: `Round English - Words in Order - ${title.main}`,
-        title,
-        sentences,
+      )
+      if (title === null) throw error
+      const sentences = loadSentences(data)
+      if (process.env.REACT) {
+        console.log(sentences)
+        res.json({ title, sentences })
+      } else {
+        res.render('wio/game/game', {
+          layout: 'layout',
+          tabTitle: `Round English - Words in Order - ${title.main}`,
+          title,
+          sentences,
       })
     }
   } catch (error) {
@@ -121,9 +110,7 @@ router.get('/:id', async (req, res, next) => {
       error,
     })
   }
-})
-
-module.exports = router
+}
 
 // function to format data received by POST in JSON to object for MongoDB
 const formatForDB = formData => {

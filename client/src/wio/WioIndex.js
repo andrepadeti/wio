@@ -10,7 +10,8 @@ const WioIndex = () => {
   useEffect(() => {
     const getAPI = async () => {
       try {
-        const data = await fetch('http://localhost:8080/api/wio')
+        // const data = await fetch('http://localhost:8080/api/wio')
+        const data = await fetch('/api/wio')
         const jsonData = await data.json()
         setLoading(false)
         setGames(jsonData)

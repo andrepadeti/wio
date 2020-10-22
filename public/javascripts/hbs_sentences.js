@@ -13,7 +13,7 @@ class Sentence {
     this.id = id // the id number of the sentence
     this.comment = sentence.comment // string that stores the sentence comment
     this.text = sentence.words // string that stores the sentence to be sorted
-    this.sentenceInOrder = this.text.split(" ") // array that stores the split sentence
+    this.sentenceInOrder = this.text.split(' ') // array that stores the split sentence
     this.currentCorrectWord = 0 // stores how many words are correct already while student is sorting
     this.currentlyLeft = [] // array that stores the words still left to be sorted
     this.complete = false // becames true when sentence is sorted
@@ -25,12 +25,12 @@ class Sentence {
     // if there is only one word in the sentence, don't run the shuffleWords method.
     // it would break the app!
     if (auxArray.length < 2) return [...auxArray]
-    
-    // make sure the first word in the shuffled sentence is different from 
+
+    // make sure the first word in the shuffled sentence is different from
     // the first word in the sentence in order (the while conditional statement)
     do {
       this.shuffleWords(auxArray)
-    } while ((auxArray[0].localeCompare(this.sentenceInOrder[0])) == 0)
+    } while (auxArray[0].localeCompare(this.sentenceInOrder[0]) == 0)
     return [...auxArray]
   }
 

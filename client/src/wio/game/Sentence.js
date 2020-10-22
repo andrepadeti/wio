@@ -16,10 +16,9 @@ const Sentence = ({
   sentenceShuffled,
   onCompletion,
 }) => {
-  console.log(id)
   // prepare list to be used by SortableJS
   let preparedList = sentenceShuffled.map((word, index) => ({
-    id: `${++id}${++index}`,
+    id: `${id}${index}`,
     name: word,
     class: 'sortable',
   }))
@@ -39,7 +38,7 @@ const Sentence = ({
       if (currentCorrectWord === sentenceInOrder.length) {
         onCompletion(id) // let parent component know one of its children is complete
         setComplete(true) // show tick
-        let sentenceCompleteAudio = new Audio('bell.wav')
+        let sentenceCompleteAudio = new Audio('/bell.wav')
         sentenceCompleteAudio.play()
         break
       }
@@ -70,8 +69,7 @@ const Sentence = ({
           </ReactSortable>
         </SentenceContainer>
         <Check>
-          {/* <img className="checkIcon" alt="" src={complete ? 'tick.png' : ''} /> */}
-          <img alt="" src="tick.png" />
+          <img className="checkIcon" alt="" src={complete ? '/tick.png' : ''} />
         </Check>
       </ExerciseContainer>
     </Fragment>

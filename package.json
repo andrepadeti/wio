@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"nodemon -e hbs,js,css ./bin/server\" \"cd client && npm run start\"",
+    "server": "nodemon -e hbs,js,css ./bin/server",
     "start": "node ./bin/server",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },

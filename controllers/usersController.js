@@ -1,11 +1,8 @@
-var express = require('express')
-var router = express.Router()
 const bcrypt = require('bcrypt')
 const passport = require('passport')
 const User = require('../models/User')
-const { checkNotAuthenticated } = require('../bin/passport-config')
 
-router.get('/login', checkNotAuthenticated, (req, res, next) => {
+exports.getLogin = (req, res, next) => {
   const success_msg = req.flash('success_msg')
   const error_msg = req.flash('error')
   res.render('users/login', {
@@ -13,28 +10,25 @@ router.get('/login', checkNotAuthenticated, (req, res, next) => {
     success_msg,
     error_msg,
   })
+}
+
+exports.postLogin = passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/login',
+  failureFlash: true,
 })
 
-router.post(
-  '/login',
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/users/login',
-    failureFlash: true,
-  })
-)
-
-router.get('/logout', (req, res) => {
+exports.getLogout = (req, res) => {
   req.logOut()
   req.flash('success_msg', 'You are logged out.')
   res.redirect('/users/login')
-})
+}
 
-router.get('/register', (req, res, next) => {
+exports.getRegister = (req, res, next) => {
   res.render('users/register', { layout: 'layout' })
-})
+}
 
-router.post('/register', async (req, res, next) => {
+exports.postRegister = async (req, res, next) => {
   const { name, email, password, password2 } = req.body
   let errors = checkFormFields(name, email, password, password2)
   // console.log('Not checking form fields')
@@ -89,9 +83,7 @@ router.post('/register', async (req, res, next) => {
       })
     }
   }
-})
-
-module.exports = router
+}
 
 // checks if fields have been filled in correctly
 const checkFormFields = (name, email, password, password2) => {

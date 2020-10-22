@@ -1,8 +1,4 @@
-const express = require('express')
-const router = express.Router()
-const hbs = require('hbs')
-
-router.get('/', async (req, res, next) => {
+exports.home = async (req, res, next) => {
   if (process.env.REACT) {
     const games = [
       {
@@ -21,6 +17,4 @@ router.get('/', async (req, res, next) => {
       },
     })
   }
-})
-
-module.exports = router
+}

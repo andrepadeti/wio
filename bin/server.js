@@ -1,18 +1,8 @@
-// #!/usr/bin/env node
-
-// only load .env file if the server isn't started in production mode
-// if (process.env.NODE_ENV !== 'production') {
-// always load it
 require('dotenv').config()
-// }
 
-/**
- * Module dependencies.
- */
-var app = require('../app')
+var app = require('./app')
 var debug = require('debug')('words-in-order-rehearsal:server')
 var http = require('http')
-// var MongoClient = require('mongodb').MongoClient
 const mongoose = require('mongoose')
 const User = require('../models/User')
 
@@ -35,14 +25,14 @@ mongoose.connect(process.env.DB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-  .then(db => {
-    module.exports = db
-    app.locals.db = db
+  // .then(db => {
+    // module.exports = db
+    // app.locals.db = db
     server.listen(port)
     server.on('error', onError)
     server.on('listening', onListening)
-  })
-  .catch(console.error)
+  // })
+  // .catch(console.error)
 
 /**
  * Normalize a port into a number, string, or false.

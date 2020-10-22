@@ -41,4 +41,8 @@ const checkNotAuthenticated = (req, res, next) => {
   next()
 }
 
-module.exports = { initializePassport, checkAuthenticated, checkNotAuthenticated }
+module.exports = {
+  initializePassport,
+  checkAuthenticated,
+  checkNotAuthenticated,
+}
